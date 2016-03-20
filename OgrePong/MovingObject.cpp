@@ -24,27 +24,31 @@ void MovingObject::setCameraToLocal(Ogre::Camera *camera){
 	camera->lookAt(10,10,0);
 }
 
-
 void 
-	MovingObject::setScale(Ogre::Vector3 newScale){
+MovingObject::setScale(Ogre::Vector3 newScale){
 		SceneNodeManager()->scale(newScale.x,newScale.y,newScale.z);
 }
-void MovingObject::setPosition(Ogre::Vector3 pos){
+void 
+MovingObject::setPosition(Ogre::Vector3 pos){
 	mObjectSceneNode->setPosition(pos);
 }
 
-void MovingObject::yaw(Ogre::Radian theta){
+void 
+MovingObject::yaw(Ogre::Radian theta){
 	mObjectSceneNode->yaw(theta);
 }
-void MovingObject::pitch(Ogre::Radian theta){
+void 
+MovingObject::pitch(Ogre::Radian theta){
 	mObjectSceneNode->pitch(theta);
 }
-void MovingObject::roll(Ogre::Radian theta){
+void 
+MovingObject::roll(Ogre::Radian theta){
 	mObjectSceneNode->roll(theta);
 }
 
-	//move fuction
-void MovingObject::translate(Ogre::Vector3 deltaPosition,TransformSpace relateTo){
+//move fuction
+void 
+MovingObject::translate(Ogre::Vector3 deltaPosition,TransformSpace relateTo){
 	if(relateTo==TS_LOCAL){
 		mObjectSceneNode->translate(deltaPosition,Ogre::Node::TS_LOCAL);
 	}else if(relateTo == TS_PARENT)

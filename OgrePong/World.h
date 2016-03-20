@@ -29,10 +29,10 @@ public:
 
 	void setCameraToTank();
 
+	//This is not neccesary if we do not allow user to control camera respectively (D Z)
 	InputHandler *getHandler(){return mInputHandler;}
-
+	
 protected:
-
 
 	Ogre::SceneManager *mSceneManager;
 
@@ -48,7 +48,6 @@ protected:
 	Ogre::SceneNode *mBattery;
 	Ogre::SceneNode *mCar;
 	
-
 };
 
 #endif

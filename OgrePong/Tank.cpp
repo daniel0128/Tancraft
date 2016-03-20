@@ -13,6 +13,7 @@ Tank::Tank(Ogre::SceneManager *sceneManager,const char *carMesh, const char * ba
 
 Tank::~Tank(void)
 {
+	//need destructor, but very wierd to code after such long experience of Java
 }
 void
 Tank::tankMove(TankDirection way, float time){
@@ -41,6 +42,7 @@ Tank::tankMove(TankDirection way, float time){
 				Ogre::Vector3::NEGATIVE_UNIT_X);
 			mTank->translate( Ogre::Vector3(0,0,-time * movingSpeed),MovingObject::TS_LOCAL);
 			break;
+			//todo:finish this
 		case FOR_LEFT:
 			break;
 		case FOR_RIGHT:
@@ -57,6 +59,7 @@ void Tank::barrelRotate(Rotate way, float time){
 	switch (way)
 	{
 	case PITCH:
+		//this may not neccessary
 		break;
 	case YAW:
 		mTank->yaw(Ogre::Radian(time * palstance));

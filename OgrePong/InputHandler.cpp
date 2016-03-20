@@ -19,6 +19,8 @@ InputHandler::InputHandler(Ogre::RenderWindow *renderWindow) :
 	mInputManager = OIS::InputManager::createInputSystem( pl );
 
 	mCurrentKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject( OIS::OISKeyboard, false /* not buffered */ ));
+	
+	//I added mouse operation
 	mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject(OIS::OISMouse, false));
 }
 
@@ -35,16 +37,33 @@ InputHandler::WasKeyDown(OIS::KeyCode key)
 	return mOldKeys[key] != '\0';
 }
 
+bool 
+InputHandler::IsMouseBtnDown(OIS::MouseButtonID button){
+	return mMouse->getMouseState().buttonDown(button);
+}
+
+OIS::MouseState 
+InputHandler::GetMouseState(){
+	return mMouse->getMouseState();
+}
+
 void 
 InputHandler::Think(float time)
 {
 	mCurrentKeyboard->copyKeyStates(mOldKeys);
-	mCurrentKeyboard->capture();
+	mCurrentKeyboard->capture();//dont understand this so not sure whether mouse need similar operation (D Z)
+
+	//mouse capture (D Z)
+	mMouse->capture();
+
 }
 
 
 InputHandler::~InputHandler()
 {
 	mInputManager->destroyInputObject(mCurrentKeyboard);
+
+	//so I need destroy mouse here
+	mInputManager->destroyInputObject(mMouse);
 }
 

@@ -1,3 +1,9 @@
+/**
+* This is the file that code based on what Professor gave us. Instead implement the translate and rotate function, I am
+* using the method that Ogre offered. I found there might be a easier way, but whatever, I made it work.
+* By Daniel Zhang (D Z)
+*/
+
 #pragma once
 #ifndef __MovingObject_h_
 #define __MovingObject_h_
@@ -18,11 +24,6 @@ public:
 		TS_PARENT,
 		TS_WORLD,
 	};
-	//Ogre::Matrix3 getOrientation() {return mOrientation;}
-    //Ogre::Vector3 getPosition() {return mPosition;}
-
-    //void setOrientation(Ogre::Matrix3 orientation); 
-    //void setPosition(Ogre::Vector3 position); 
 
 	//constructor and destructor
 	MovingObject(Ogre::SceneManager *sceneManager, const char *meshName, MovingObject *parent);
@@ -37,7 +38,7 @@ public:
 
 	Ogre::SceneNode *SceneNodeManager(){return mObjectSceneNode;}
     
-	//ratate function
+	//rotate function
 	void yaw(Ogre::Radian theta);
     void pitch(Ogre::Radian theta);
     void roll(Ogre::Radian theta);
@@ -48,19 +49,11 @@ public:
 	//camera funtion
 	void setCameraToLocal(Ogre::Camera *camera);
 	
-    //void setPositionFromWorldPosition(Ogre::Vector3 worldPosition);
-    //void setOrentationFromWorldOrientation(Ogre::Matrix3 worldOrientation);
-	
-	//void translate(Ogre::Real x,Ogre::Real y,Ogre::Real z,Ogre::Node::TransformSpace node);
 protected:
-
-	//void GetWorldPositionAndOrientation(Ogre::Vector3 &position, Ogre::Matrix3 &orientation);
-    //void SetGraphicPosition();
 
 	float movingSpeed;
 	float palstance;
-    //Ogre::Matrix3 mOrientation;
-    //Ogre::Vector3 mPosition;
+
     MovingObject *mParent;
     Ogre::SceneNode *mObjectSceneNode;
 };

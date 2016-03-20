@@ -23,35 +23,9 @@
 
 World::World(Ogre::SceneManager *sceneManager, InputHandler *input)   : mSceneManager(sceneManager), mInputHandler(input)
 {
-	// Global illumination for now.  Adding individual light sources will make you scene look more realistic
 	mSceneManager->setAmbientLight(Ogre::ColourValue(1,1,1));
 
-	// First, we create a scene node, and attach a model to it.  coin.mesh is defined in the Content directory,
-	//  under models.  Note that you should probably place all of this creation code into a separate method (or methods)
-	//  for your final game
-	/*Ogre::Entity *ent1 =SceneManager()->createEntity("coin.mesh");
-	mCoinNode = SceneManager()->getRootSceneNode()->createChildSceneNode();
-	mCoinNode->attachObject(ent1);*/
-
-	// Now that we have a scene node, we can move, scale and rotate it as we please.  We'll scale this up a smidge
-	// just as an example.  
-	//   (take a look at the header file for Ogre::SceneNode -- a good IDE is your friend, here)
-
-	//mCoinNode->scale(5,5,5);
-	//mTank = SceneManager()->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0,-30,0));
-	//mTank->setDirection(Ogre::Vector3(0,0,-1),Ogre::Node::TS_WORLD,Ogre::Vector3::NEGATIVE_UNIT_X);
-	//mTank ->scale(5,5,5);
-	//Ogre::Entity *carEnt = SceneManager()->createEntity("Car.mesh");
-	//mCar = mTank->createChildSceneNode(Ogre::Vector3(0,0,0));
-	//mCar ->attachObject(carEnt);
-
-	//Ogre::Entity *batteryEnt = SceneManager()->createEntity("Battery.mesh");
-	//mBattery = mTank->createChildSceneNode(Ogre::Vector3(0,1.6,0));
-	//mBattery ->attachObject(batteryEnt);
-
 	playerTank = new Tank(SceneManager(),"Car.mesh","Battery.mesh");
-	//playerTank->getTank()->setCameraToLocal(mCamera->getCamera());
-	//mBattery ->scale(10,10,10);
 
 	// Yeah, this should be done automatically for all fonts referenced in an overlay file.
 	//  But there is a bug in the OGRE code so we need to do it manually.
@@ -77,13 +51,6 @@ World::setCameraToTank(){
 void 
 World::Think(float time)
 {
-	const float RADIANS_PER_SECOND = 0.5;
-	const float COIN_SPEED = 30;
-
-	// This is a pretty silly think method, but it gives you some ideas about how
-	//  to proceed.  The single object will rotate
-
-	 //mCar->pitch(Ogre::Radian(time * RADIANS_PER_SECOND));
 
 	// We can move the single object around using the input manager ...
 	if (mInputHandler->IsKeyDown(OIS::KC_W)){//foward
@@ -100,54 +67,28 @@ World::Think(float time)
 	}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_D)){
 	}
 
-
-	 //if (mInputHandler->IsKeyDown(OIS::KC_A))
-	 //{
-		//
-		// mCar->setDirection(Ogre::Vector3(0,0,1),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
-		// mTank->translate(0,0,-time * COIN_SPEED, Ogre::Node::TS_LOCAL);
-	 //}
-	 //else if (mInputHandler->IsKeyDown(OIS::KC_D))
-	 //{
-		//
-		// mCar->setDirection(Ogre::Vector3(0,0,-1),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
-		// mTank->translate(0, 0, time * COIN_SPEED,Ogre::Node::TS_LOCAL);
-	 //}
-	 //if(mInputHandler->IsKeyDown(OIS::KC_W))
-	 //{
-		//// playerTank->tankMove(Tank::FOWARD,time);
-		// mCar->setDirection(Ogre::Vector3(-1,0,0),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
-		// mTank->translate(time * COIN_SPEED,0,0,Ogre::Node::TS_LOCAL);
-	 //}else if(mInputHandler->IsKeyDown(OIS::KC_S))
-	 //{
-		// //playerTank->tankMove(Tank::BACK,time);
-		// mCar->setDirection(Ogre::Vector3(1,0,0),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
-		// mTank->translate(-time*COIN_SPEED,0,0,Ogre::Node::TS_LOCAL);
-	 //}
-
-
-	 //to control the battery, later will be controled by mouse
+	 //Although mouse control is implemented, I still want to keep this (D Z)
 	 if (mInputHandler->IsKeyDown(OIS::KC_LEFT))
 	 {
 		 playerTank->barrelRotate(Tank::YAW,time);
-		 //mTank->yaw(Ogre::Radian(time * RADIANS_PER_SECOND));
-		 //mCar->yaw(Ogre::Radian(-time * RADIANS_PER_SECOND));
 	 }else if(mInputHandler->IsKeyDown(OIS::KC_RIGHT))
 	 {
 		 playerTank->barrelRotate(Tank::YAW,-time);
-		 //mTank->yaw(Ogre::Radian(-time * RADIANS_PER_SECOND));
-		 //mCar->yaw(Ogre::Radian(time * RADIANS_PER_SECOND));
 	 }
 
 	 if (mInputHandler->IsKeyDown(OIS::KC_UP))
 	 {
 		 playerTank->barrelRotate(Tank::ROLL,time);
-		 //mBattery->roll(Ogre::Radian(time * RADIANS_PER_SECOND));
 	 }else if(mInputHandler->IsKeyDown(OIS::KC_DOWN))
 	 {
 		 playerTank->barrelRotate(Tank::ROLL,-time);
-		 //mBattery->roll(-Ogre::Radian(time * RADIANS_PER_SECOND));
 	 }
+
+	 //mouse control of camera and barrel (D Z)
+	 playerTank->barrelRotate(Tank::YAW,  -.1*mInputHandler->GetMouseState().X.rel);
+	 playerTank->barrelRotate(Tank::ROLL, -.1*mInputHandler->GetMouseState().Y.rel);
+
+
 
 	 // Some other fun stuff to try:
 	 //mCoinNode->yaw(Ogre::Radian(time * RADIANS_PER_SECOND));

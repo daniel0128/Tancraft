@@ -21,6 +21,11 @@ public:
 	bool IsKeyDown(OIS::KeyCode key);
 	bool WasKeyDown(OIS::KeyCode key);
 
+	//mouse control
+	bool IsMouseBtnDown(OIS::MouseButtonID button);
+	//I am not sure why here Captain Letter is used, but I decided to follow. (D Z)
+	OIS::MouseState GetMouseState();
+
 protected:
 	OIS::InputManager* mInputManager;
 	Ogre::RenderWindow *mRenderWindow;
