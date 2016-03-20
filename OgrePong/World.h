@@ -10,6 +10,7 @@ namespace Ogre {
 // Forward delcarations of our own classes
 class PongCamera;
 class InputHandler;
+class Tank;
 
 
 class World
@@ -26,6 +27,7 @@ public:
 
 	Ogre::SceneManager *SceneManager() { return mSceneManager; }
 
+	void setCameraToTank();
 
 protected:
 
@@ -34,6 +36,7 @@ protected:
 
 	InputHandler *mInputHandler;
 	PongCamera *mCamera;
+	Tank *playerTank;
 
 	// Here is where you keep all your world data.
 	//  You probably want to use containers (arrays / lists / classes / etc) to ogranize them, 
@@ -42,6 +45,7 @@ protected:
 	Ogre::SceneNode *mTank;
 	Ogre::SceneNode *mBattery;
 	Ogre::SceneNode *mCar;
+	
 
 };
 

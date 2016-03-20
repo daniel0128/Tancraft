@@ -15,6 +15,7 @@ class PongCamera
 
 public:
     PongCamera(Ogre::Camera *renderCamera, World *world); 
+	Ogre::Camera *getCamera(){return mRenderCamera;}
     void Think(float time);
     // If you have a different cameras, you'll want some acessor methods here.
     //  If your camera always stays still, you could remove this class entirely

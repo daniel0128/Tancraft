@@ -16,6 +16,7 @@
 #include <ois/ois.h>
 
 // Other input files for my project
+#include "Tank.h"
 #include "Camera.h"
 #include "InputHandler.h"
 
@@ -37,19 +38,19 @@ World::World(Ogre::SceneManager *sceneManager, InputHandler *input)   : mSceneMa
 	//   (take a look at the header file for Ogre::SceneNode -- a good IDE is your friend, here)
 
 	//mCoinNode->scale(5,5,5);
-	mTank = SceneManager()->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0,-30,0));
-	mTank->setDirection(Ogre::Vector3(0,0,-1),Ogre::Node::TS_WORLD,Ogre::Vector3::NEGATIVE_UNIT_X);
-	mTank ->scale(5,5,5);
-	Ogre::Entity *carEnt = SceneManager()->createEntity("Car.mesh");
-	mCar = mTank->createChildSceneNode(Ogre::Vector3(0,0,0));
-	mCar ->attachObject(carEnt);
+	//mTank = SceneManager()->getRootSceneNode()->createChildSceneNode(Ogre::Vector3(0,-30,0));
+	//mTank->setDirection(Ogre::Vector3(0,0,-1),Ogre::Node::TS_WORLD,Ogre::Vector3::NEGATIVE_UNIT_X);
+	//mTank ->scale(5,5,5);
+	//Ogre::Entity *carEnt = SceneManager()->createEntity("Car.mesh");
+	//mCar = mTank->createChildSceneNode(Ogre::Vector3(0,0,0));
+	//mCar ->attachObject(carEnt);
 
-	Ogre::Entity *batteryEnt = SceneManager()->createEntity("Battery.mesh");
-	mBattery = mTank->createChildSceneNode(Ogre::Vector3(0,1.6,0));
-	mBattery ->attachObject(batteryEnt);
+	//Ogre::Entity *batteryEnt = SceneManager()->createEntity("Battery.mesh");
+	//mBattery = mTank->createChildSceneNode(Ogre::Vector3(0,1.6,0));
+	//mBattery ->attachObject(batteryEnt);
 
-	
-
+	playerTank = new Tank(SceneManager(),"Car.mesh","Battery.mesh");
+	//playerTank->getTank()->setCameraToLocal(mCamera->getCamera());
 	//mBattery ->scale(10,10,10);
 
 	// Yeah, this should be done automatically for all fonts referenced in an overlay file.
@@ -67,6 +68,11 @@ World::World(Ogre::SceneManager *sceneManager, InputHandler *input)   : mSceneMa
 	//overly->show();
 }
 
+//void
+//World::setCameraToTank(){
+//	if(playerTank)
+//		playerTank->getTank()->setCameraToLocal(mCamera->getCamera());
+//}
 
 void 
 World::Think(float time)
@@ -80,44 +86,67 @@ World::Think(float time)
 	 //mCar->pitch(Ogre::Radian(time * RADIANS_PER_SECOND));
 
 	// We can move the single object around using the input manager ...
-	 if (mInputHandler->IsKeyDown(OIS::KC_A))
-	 {
-		 mCar->setDirection(Ogre::Vector3(0,0,1),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
-		 mTank->translate(0,0,-time * COIN_SPEED, Ogre::Node::TS_LOCAL);
-	 }
-	 else if (mInputHandler->IsKeyDown(OIS::KC_D))
-	 {
-		 mCar->setDirection(Ogre::Vector3(0,0,-1),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
-		 mTank->translate(0, 0, time * COIN_SPEED,Ogre::Node::TS_LOCAL);
-	 }
-	 if(mInputHandler->IsKeyDown(OIS::KC_W))
-	 {
-		 mCar->setDirection(Ogre::Vector3(-1,0,0),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
-		 mTank->translate(time * COIN_SPEED,0,0,Ogre::Node::TS_LOCAL);
-	 }else if(mInputHandler->IsKeyDown(OIS::KC_S))
-	 {
-		 mCar->setDirection(Ogre::Vector3(1,0,0),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
-		 mTank->translate(-time*COIN_SPEED,0,0,Ogre::Node::TS_LOCAL);
-	 }
+	if (mInputHandler->IsKeyDown(OIS::KC_W)){//foward
+		playerTank->tankMove(Tank::FOWARD,time);
+	}else if(mInputHandler->IsKeyDown(OIS::KC_S)){//back
+		playerTank->tankMove(Tank::BACK,time);
+	}else if(mInputHandler->IsKeyDown(OIS::KC_A)){//left
+		playerTank->tankMove(Tank::LEFT,time);
+	}else if(mInputHandler->IsKeyDown(OIS::KC_D)){//right
+		playerTank->tankMove(Tank::RIGHT,time);
+	}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_A)){
+	}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_D)){
+	}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_A)){
+	}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_D)){
+	}
+
+
+	 //if (mInputHandler->IsKeyDown(OIS::KC_A))
+	 //{
+		//
+		// mCar->setDirection(Ogre::Vector3(0,0,1),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
+		// mTank->translate(0,0,-time * COIN_SPEED, Ogre::Node::TS_LOCAL);
+	 //}
+	 //else if (mInputHandler->IsKeyDown(OIS::KC_D))
+	 //{
+		//
+		// mCar->setDirection(Ogre::Vector3(0,0,-1),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
+		// mTank->translate(0, 0, time * COIN_SPEED,Ogre::Node::TS_LOCAL);
+	 //}
+	 //if(mInputHandler->IsKeyDown(OIS::KC_W))
+	 //{
+		//// playerTank->tankMove(Tank::FOWARD,time);
+		// mCar->setDirection(Ogre::Vector3(-1,0,0),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
+		// mTank->translate(time * COIN_SPEED,0,0,Ogre::Node::TS_LOCAL);
+	 //}else if(mInputHandler->IsKeyDown(OIS::KC_S))
+	 //{
+		// //playerTank->tankMove(Tank::BACK,time);
+		// mCar->setDirection(Ogre::Vector3(1,0,0),Ogre::Node::TS_PARENT,Ogre::Vector3::NEGATIVE_UNIT_X);
+		// mTank->translate(-time*COIN_SPEED,0,0,Ogre::Node::TS_LOCAL);
+	 //}
 
 
 	 //to control the battery, later will be controled by mouse
 	 if (mInputHandler->IsKeyDown(OIS::KC_LEFT))
 	 {
-		 mTank->yaw(Ogre::Radian(time * RADIANS_PER_SECOND));
-		 mCar->yaw(Ogre::Radian(-time * RADIANS_PER_SECOND));
+		 playerTank->barrelRotate(Tank::YAW,time);
+		 //mTank->yaw(Ogre::Radian(time * RADIANS_PER_SECOND));
+		 //mCar->yaw(Ogre::Radian(-time * RADIANS_PER_SECOND));
 	 }else if(mInputHandler->IsKeyDown(OIS::KC_RIGHT))
 	 {
-		 mTank->yaw(Ogre::Radian(-time * RADIANS_PER_SECOND));
-		 mCar->yaw(Ogre::Radian(time * RADIANS_PER_SECOND));
+		 playerTank->barrelRotate(Tank::YAW,-time);
+		 //mTank->yaw(Ogre::Radian(-time * RADIANS_PER_SECOND));
+		 //mCar->yaw(Ogre::Radian(time * RADIANS_PER_SECOND));
 	 }
 
 	 if (mInputHandler->IsKeyDown(OIS::KC_UP))
 	 {
-		 mBattery->roll(Ogre::Radian(time * RADIANS_PER_SECOND));
+		 playerTank->barrelRotate(Tank::ROLL,time);
+		 //mBattery->roll(Ogre::Radian(time * RADIANS_PER_SECOND));
 	 }else if(mInputHandler->IsKeyDown(OIS::KC_DOWN))
 	 {
-		 mBattery->roll(-Ogre::Radian(time * RADIANS_PER_SECOND));
+		 playerTank->barrelRotate(Tank::ROLL,-time);
+		 //mBattery->roll(-Ogre::Radian(time * RADIANS_PER_SECOND));
 	 }
 
 	 // Some other fun stuff to try:

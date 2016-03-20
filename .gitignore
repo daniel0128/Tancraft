@@ -3,3 +3,6 @@ Visual Studio 2012Templates/
 OgrePong.sdf
 OgrePong/OgrePong.vcxproj.user
 OgrePong.opensdf
+Debug/
+OgrePong.v11.suo
+OgrePong/Debug/
