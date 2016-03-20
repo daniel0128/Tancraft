@@ -18,10 +18,12 @@ MovingObject::
 
 MovingObject::~MovingObject(){}
 
-//void MovingObject::setCameraToLocal(Ogre::Camera *camera){
-//	camera->setPosition(-1,3,0);
-//	camera->lookAt(0,3,0);
-//}
+void MovingObject::setCameraToLocal(Ogre::Camera *camera){
+	mObjectSceneNode->attachObject(camera);
+	camera->setPosition(-30,15,0);
+	camera->lookAt(10,10,0);
+}
+
 
 void 
 	MovingObject::setScale(Ogre::Vector3 newScale){

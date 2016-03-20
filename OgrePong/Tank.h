@@ -22,6 +22,7 @@ public:
 	Tank(Ogre::SceneManager *sceneManager,const char *carMesh, const char * barrelMesh);
 	~Tank(void);
 	MovingObject *getTank(){return mTank;}
+	MovingObject *getBarrel(){return mBarrel;}
 
 	void barrelRotate(Rotate way, float time);
 	void tankMove(TankDirection way, float time);

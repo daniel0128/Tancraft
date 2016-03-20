@@ -29,6 +29,8 @@ public:
 
 	void setCameraToTank();
 
+	InputHandler *getHandler(){return mInputHandler;}
+
 protected:
 
 

@@ -68,11 +68,11 @@ World::World(Ogre::SceneManager *sceneManager, InputHandler *input)   : mSceneMa
 	//overly->show();
 }
 
-//void
-//World::setCameraToTank(){
-//	if(playerTank)
-//		playerTank->getTank()->setCameraToLocal(mCamera->getCamera());
-//}
+void
+World::setCameraToTank(){
+	if(playerTank)
+		playerTank->getBarrel()->setCameraToLocal(mCamera->getCamera());
+}
 
 void 
 World::Think(float time)

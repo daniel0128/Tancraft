@@ -87,7 +87,7 @@ OgrePong::createScene()
 
 	mAIManager = new AIManager(mWorld);
 	mWorld->addCamera(mPongCamera);
-
+	mWorld->setCameraToTank();
 }
 
 bool 
