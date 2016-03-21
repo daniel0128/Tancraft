@@ -85,8 +85,8 @@ World::Think(float time)
 	 }
 
 	 //mouse control of camera and barrel (D Z)
-	 playerTank->barrelRotate(Tank::YAW,  -.1*mInputHandler->GetMouseState().X.rel);
-	 playerTank->barrelRotate(Tank::ROLL, -.1*mInputHandler->GetMouseState().Y.rel);
+	 playerTank->barrelRotate(Tank::YAW,  -time*mInputHandler->GetMouseState().X.rel);
+	 playerTank->barrelRotate(Tank::ROLL, -time*mInputHandler->GetMouseState().Y.rel);
 
 
 
