@@ -4,6 +4,7 @@
 #include "AIManager.h"
 #include "MainListener.h"
 #include "Camera.h"
+#include "ProjectileManager.h"
 
 #include "Ogre.h"
 #include "OgreConfigFile.h"
@@ -81,8 +82,8 @@ OgrePong::createScene()
 	//   or, if you need circular accesses (player needs access to the world, and the world needs
 	//   access to the player), you can add the pointers later.  Here's an example of both ways
 	//   of doing it, giving the world access to the camera and the input handler.
-
-    mWorld = new World(mSceneMgr, mInputHandler);
+	mProjectileManager = new ProjectileManager(mSceneMgr);
+    mWorld = new World(mSceneMgr, mInputHandler, mProjectileManager);
     mPongCamera = new PongCamera(mCamera, mWorld);
 
 	mAIManager = new AIManager(mWorld);
@@ -213,6 +214,7 @@ OgrePong::destroyScene()
     delete mAIManager;
     delete mPongCamera;
     delete mInputHandler;
+	delete mProjectileManager;
 }
 
 void 

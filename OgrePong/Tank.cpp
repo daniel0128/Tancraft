@@ -1,9 +1,13 @@
 #include "Tank.h"
 #include "OgreSceneManager.h"
+#include "Projectile.h"
+#include "ProjectileManager.h"
 
 
-Tank::Tank(Ogre::SceneManager *sceneManager,const char *carMesh, const char * barrelMesh):MovingObject(sceneManager,NULL,NULL)
+Tank::Tank(Ogre::SceneManager *sceneManager, ProjectileManager* pManager, const char *carMesh, const char * barrelMesh)
+	:MovingObject(sceneManager,NULL,NULL),mProjectileManager(pManager),fireCD(.0)
 {
+	//mProjectileManager = pManager;
 	mTank = new MovingObject(sceneManager, NULL, NULL);
 	mTank->setScale(Ogre::Vector3(5,5,5));
 	mCar = new MovingObject(sceneManager, carMesh, mTank);
@@ -70,5 +74,14 @@ void Tank::barrelRotate(Rotate way, float time){
 		break;
 	default:
 		break;
+	}
+}
+void
+Tank::fire(){
+	if(fireCD<0.000001){
+		Projectile* bullet = new Projectile(getSceneManager(),mBarrel->SceneNodeManager()->_getDerivedPosition(),
+			mBarrel->SceneNodeManager()->_getDerivedOrientation() * Ogre::Vector3(1,0,0));
+		mProjectileManager->getBulletList()->push_back(bullet);
+		fireCD=0.5;
 	}
 }

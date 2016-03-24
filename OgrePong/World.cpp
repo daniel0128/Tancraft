@@ -17,15 +17,23 @@
 
 // Other input files for my project
 #include "Tank.h"
+#include "Projectile.h"
 #include "Camera.h"
 #include "InputHandler.h"
+#include "ProjectileManager.h"
 
 
-World::World(Ogre::SceneManager *sceneManager, InputHandler *input)   : mSceneManager(sceneManager), mInputHandler(input)
+World::World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager) 
+	: mSceneManager(sceneManager), mInputHandler(input), mProjectileManager(projectileManager)
 {
 	mSceneManager->setAmbientLight(Ogre::ColourValue(1,1,1));
 
-	playerTank = new Tank(SceneManager(),"Car.mesh","Battery.mesh");
+	playerTank = new Tank(SceneManager(),mProjectileManager,"Car.mesh","Battery.mesh");
+
+	bullet1 = new Projectile(SceneManager(),Ogre::Vector3(20,10,20),Ogre::Vector3(1,1,1));
+	bullet2 =new Projectile(SceneManager(),Ogre::Vector3(-20,10,20));
+	bullet3 =new Projectile(SceneManager(),Ogre::Vector3(-20,10,-20));
+	bullet4 =new Projectile(SceneManager(),Ogre::Vector3(20,10,-20));
 
 	// Yeah, this should be done automatically for all fonts referenced in an overlay file.
 	//  But there is a bug in the OGRE code so we need to do it manually.
@@ -51,6 +59,7 @@ World::setCameraToTank(){
 void 
 World::Think(float time)
 {
+	mProjectileManager ->Think(time);
 
 	// We can move the single object around using the input manager ...
 	if (mInputHandler->IsKeyDown(OIS::KC_W)){//foward
@@ -87,16 +96,25 @@ World::Think(float time)
 	 //mouse control of camera and barrel (D Z)
 	 playerTank->barrelRotate(Tank::YAW,  -time*mInputHandler->GetMouseState().X.rel);
 	 playerTank->barrelRotate(Tank::ROLL, -time*mInputHandler->GetMouseState().Y.rel);
-
-
-
+	 if(mInputHandler->IsMouseBtnDown(OIS::MB_Left)){
+		 playerTank->fire();
+	 }
+	 float cd = playerTank->getFireCD();
+	 playerTank->setFireCD(cd-time);
+	 
 	 // Some other fun stuff to try:
 	 //mCoinNode->yaw(Ogre::Radian(time * RADIANS_PER_SECOND));
 	 //mCoinNode->roll(Ogre::Radian(time * RADIANS_PER_SECOND));
 
 	 //Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
 	 //Ogre::TextAreaOverlayElement *te = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Sample/Panel/Text1");
-	 //te->setCaption("New Caption!");
+	 //te->setCaption(Ogre::UTFString(s));
+}
+
+void showInfo(std::string info){
+	Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
+	Ogre::TextAreaOverlayElement *te = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Sample/Panel/Text1");
+	te->setCaption(Ogre::UTFString(info));
 }
 
 

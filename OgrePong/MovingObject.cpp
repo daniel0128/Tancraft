@@ -4,7 +4,7 @@
 
 MovingObject::
 	MovingObject(Ogre::SceneManager *sceneManager, const char *meshName, MovingObject *parent) 
-	:mParent(parent),movingSpeed(30),palstance(0.5)
+	:mParent(parent),mSceneManager(sceneManager), movingSpeed(30),palstance(0.5)
 {
 	if(mParent)
 		mObjectSceneNode = mParent->mObjectSceneNode->createChildSceneNode();
@@ -26,7 +26,7 @@ void MovingObject::setCameraToLocal(Ogre::Camera *camera){
 
 void 
 MovingObject::setScale(Ogre::Vector3 newScale){
-		SceneNodeManager()->scale(newScale.x,newScale.y,newScale.z);
+	SceneNodeManager()->scale(newScale.x,newScale.y,newScale.z);
 }
 void 
 MovingObject::setPosition(Ogre::Vector3 pos){

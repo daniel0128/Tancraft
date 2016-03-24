@@ -1,5 +1,6 @@
 #pragma once
 #include "movingobject.h"
+class ProjectileManager;
 class Tank :
 	public MovingObject
 {
@@ -19,18 +20,24 @@ public:
 		FOR_LEFT,
 		FOR_RIGHT,
 	};
-	Tank(Ogre::SceneManager *sceneManager,const char *carMesh, const char * barrelMesh);
+	Tank(Ogre::SceneManager *sceneManager, ProjectileManager *pManager, const char *carMesh, const char *barrelMesh);
 	~Tank(void);
 	MovingObject *getTank(){return mTank;}
 	MovingObject *getBarrel(){return mBarrel;}
 
 	void barrelRotate(Rotate way, float time);
 	void tankMove(TankDirection way, float time);
+	void fire();
+	float getFireCD(){return fireCD;}
+	void setFireCD(float cd){fireCD=cd;}
+
 protected:
 	MovingObject *mBarrel;
 	MovingObject *mCar;
 	MovingObject *mTank;
 
+	ProjectileManager *mProjectileManager;
+	float fireCD;
 	MovingObject *mParent;
     Ogre::SceneNode *mObjectSceneNode;
 };

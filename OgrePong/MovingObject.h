@@ -33,11 +33,13 @@ public:
 	void setSpeed(float speed){movingSpeed = speed;}
 	void setPalstance(float palstance){this->palstance = palstance;}
 	void setPosition(Ogre::Vector3);
-
+	void setVelocity(Ogre::Vector3);
 	void setScale(Ogre::Vector3 newScale);
 
 	Ogre::SceneNode *SceneNodeManager(){return mObjectSceneNode;}
-    
+	Ogre::SceneManager *getSceneManager(){return mSceneManager;}
+	Ogre::Vector3 getVelocity(){return velocity;}
+
 	//rotate function
 	void yaw(Ogre::Radian theta);
     void pitch(Ogre::Radian theta);
@@ -53,8 +55,10 @@ protected:
 
 	float movingSpeed;
 	float palstance;
+	Ogre::Vector3 velocity;
 
     MovingObject *mParent;
     Ogre::SceneNode *mObjectSceneNode;
+	Ogre::SceneManager *mSceneManager;
 };
 #endif

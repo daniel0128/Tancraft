@@ -11,13 +11,15 @@ namespace Ogre {
 class PongCamera;
 class InputHandler;
 class Tank;
+class Projectile;
+class ProjectileManager;
 
 
 class World
 {
 public:
 	
-    World(Ogre::SceneManager *sceneManager, InputHandler *input);
+	World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager);
 
     // You'll want various methods to access & change your world here
     
@@ -31,6 +33,7 @@ public:
 
 	//This is not neccesary if we do not allow user to control camera respectively (D Z)
 	InputHandler *getHandler(){return mInputHandler;}
+	void setInfoStr(std::string info){infoStr = info;}
 	
 protected:
 
@@ -38,16 +41,21 @@ protected:
 
 	InputHandler *mInputHandler;
 	PongCamera *mCamera;
-	Tank *playerTank;
+	ProjectileManager *mProjectileManager;
+	
 
 	// Here is where you keep all your world data.
 	//  You probably want to use containers (arrays / lists / classes / etc) to ogranize them, 
 	//    instead of a whole list of variables.  
-
-	Ogre::SceneNode *mTank;
-	Ogre::SceneNode *mBattery;
-	Ogre::SceneNode *mCar;
+	Tank *playerTank;
 	
+	//only for test
+	Projectile *bullet1;
+	Projectile *bullet2;
+	Projectile *bullet3;
+	Projectile *bullet4;
+
+	std::string infoStr;
 };
 
 #endif
