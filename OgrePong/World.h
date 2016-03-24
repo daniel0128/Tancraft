@@ -13,13 +13,14 @@ class InputHandler;
 class Tank;
 class Projectile;
 class ProjectileManager;
+class TankManager;
 
 
 class World
 {
 public:
 	
-	World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager);
+	World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager,TankManager *tankManager);
 
     // You'll want various methods to access & change your world here
     
@@ -29,7 +30,7 @@ public:
 
 	Ogre::SceneManager *SceneManager() { return mSceneManager; }
 
-	void setCameraToTank();
+	//void setCameraToTank();
 
 	//This is not neccesary if we do not allow user to control camera respectively (D Z)
 	InputHandler *getHandler(){return mInputHandler;}
@@ -42,12 +43,13 @@ protected:
 	InputHandler *mInputHandler;
 	PongCamera *mCamera;
 	ProjectileManager *mProjectileManager;
+	TankManager* mTankManager;
 	
 
 	// Here is where you keep all your world data.
 	//  You probably want to use containers (arrays / lists / classes / etc) to ogranize them, 
 	//    instead of a whole list of variables.  
-	Tank *playerTank;
+	//Tank *playerTank;
 	
 	//only for test
 	Projectile *bullet1;

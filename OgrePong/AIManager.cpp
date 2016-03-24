@@ -1,19 +1,17 @@
+#include "stdafx.h"
 #include "AIManager.h"
-#include "World.h"
 
-AIManager::AIManager(World *world) : mWorld(world)
+
+AIManager::AIManager(Ogre::SceneManager* sceneManager, ProjectileManager* pManager)
+	:TankManager(sceneManager,pManager)
 {
-    // Any initialization that needs to be done ...
 }
 
-AIManager::~AIManager()
+
+AIManager::~AIManager(void)
 {
-    // Clean up after yourself ...
 }
 
-void 
-AIManager::Think(float time)
-{
-	// Do any "Global" AI thinking, and then call think for all of the actual AI's running about
+void
+AIManager::Think(float time){
 }
-

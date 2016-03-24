@@ -123,6 +123,7 @@ copy resources.cfg "$(OutDir)"</Command>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="TankManager.h" />
+    <ClInclude Include="UserInput.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +144,7 @@ copy resources.cfg "$(OutDir)"</Command>
     </ClCompile>
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="TankManager.cpp" />
+    <ClCompile Include="UserInput.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

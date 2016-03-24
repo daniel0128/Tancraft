@@ -21,6 +21,7 @@ class MainListener;
 
 class ProjectileManager;
 class TankManager;
+class UserInput;
 
 class OgrePong :  public Ogre::WindowEventListener
 {
@@ -70,14 +71,16 @@ protected:
 
 	MainListener *mPongFrameListener;
 
-	AIManager *mAIManager;
+
 	InputHandler *mInputHandler;
 	World *mWorld;
     PongCamera *mPongCamera;
 
 	//what I added (D Z)
 	TankManager* mTankManager;
+	//AIManager* mAIManager;
 	ProjectileManager* mProjectileManager; 
+	UserInput* mUserInput;
 	
     Ogre::Root *mRoot;
     Ogre::Camera* mCamera;

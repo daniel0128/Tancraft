@@ -7,14 +7,14 @@ namespace Ogre
     class Camera;
     class Vector3;
 }
-class World;
+class TankManager;
 
 
 class PongCamera
 {
 
 public:
-    PongCamera(Ogre::Camera *renderCamera, World *world); 
+    PongCamera(Ogre::Camera *renderCamera, TankManager* tManager); 
 	Ogre::Camera *getCamera(){return mRenderCamera;}
     void Think(float time);
     // If you have a different cameras, you'll want some acessor methods here.
@@ -23,7 +23,7 @@ public:
 protected:
 
     Ogre::Camera *mRenderCamera; 
-    World *mWorld;
+    TankManager *mTankManager;
 
 };
 

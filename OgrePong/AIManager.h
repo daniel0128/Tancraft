@@ -1,23 +1,11 @@
-#ifndef __AIManager_h_
-#define __AIManager_h_
-
-
-class World;
-
-class AIManager 
+#pragma once
+#include "tankmanager.h"
+class AIManager :
+	public TankManager
 {
-
 public:
-    // You may want to add parameters to the AI Manager constructor
-	AIManager(World *world);
-	~AIManager();
-
-    // Go through all of the AIs, and call think on each one
-    void Think(float time);
-
-protected:
-	World *mWorld;
-    // Probablay want a list of individual AI classes here ...
+	AIManager(Ogre::SceneManager* sceneManager, ProjectileManager* pManager);
+	~AIManager(void);
+	void Think(float time);
 };
 
-#endif

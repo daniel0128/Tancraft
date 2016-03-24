@@ -5,6 +5,7 @@
 #include "MainListener.h"
 #include "Camera.h"
 #include "ProjectileManager.h"
+#include "UserInput.h"
 
 #include "Ogre.h"
 #include "OgreConfigFile.h"
@@ -56,7 +57,7 @@ OgrePong::createCamera()
 void 
 OgrePong::createFrameListener(void)
 {
-	mPongFrameListener = new MainListener(mWindow, mInputHandler, mAIManager, mWorld, mPongCamera);
+	mPongFrameListener = new MainListener(mWindow, mInputHandler, mUserInput, mWorld, mPongCamera);
 	mRoot->addFrameListener(mPongFrameListener);
 }
 
@@ -83,12 +84,16 @@ OgrePong::createScene()
 	//   access to the player), you can add the pointers later.  Here's an example of both ways
 	//   of doing it, giving the world access to the camera and the input handler.
 	mProjectileManager = new ProjectileManager(mSceneMgr);
-    mWorld = new World(mSceneMgr, mInputHandler, mProjectileManager);
-    mPongCamera = new PongCamera(mCamera, mWorld);
+	//mAIManager = new AIManager(mSceneMgr,mProjectileManager);
+	mTankManager = new TankManager(mSceneMgr,mProjectileManager);
+	mUserInput = new UserInput(mInputHandler,mTankManager,mProjectileManager);
 
-	mAIManager = new AIManager(mWorld);
-	mWorld->addCamera(mPongCamera);
-	mWorld->setCameraToTank();
+    mWorld = new World(mSceneMgr, mInputHandler, mProjectileManager,mTankManager);
+    mPongCamera = new PongCamera(mCamera, mTankManager);
+
+	//mAIManager = new AIManager(mWorld);
+	//mWorld->addCamera(mPongCamera);
+	//mUserInput->setCameraToTank();
 }
 
 bool 
@@ -211,7 +216,7 @@ void
 OgrePong::destroyScene()
 {
     delete mWorld;
-    delete mAIManager;
+    delete mUserInput;
     delete mPongCamera;
     delete mInputHandler;
 	delete mProjectileManager;

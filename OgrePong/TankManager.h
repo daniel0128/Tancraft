@@ -1,11 +1,25 @@
 #pragma once
 #ifndef __TankManager_h_
 #define __TankManager_h_
+#include "Tank.h"
+
+class ProjectileManager;
+class Tank;
+
 class TankManager
 {
 public:
-	TankManager(void);
+	TankManager(Ogre::SceneManager* sceneManager, ProjectileManager* pManager);
 	~TankManager(void);
-	void Think(float time);
+	void Think(float);
+	//
+	Tank* getPlayerTank(){return playerTank;}
+	std::vector<Tank*> *getTankList(){ return &tankList;}
+protected:
+
+	Tank* playerTank;
+	Ogre::SceneManager* mSceneManager;
+	ProjectileManager* mProjectileManager;
+	std::vector<Tank*> tankList;
 };
 #endif

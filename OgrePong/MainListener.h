@@ -12,21 +12,22 @@ namespace Ogre
 }
 
 class InputHandler;
-class AIManager;
+class UserInput;
 class World;
 class PongCamera;
 
 class MainListener : public Ogre::FrameListener
 {
 public:
-	MainListener(Ogre::RenderWindow *mainWindow, InputHandler *inputHandler, AIManager *aiManager, World *world, PongCamera *cam);
+	MainListener(Ogre::RenderWindow *mainWindow, InputHandler *inputHandler, UserInput *userInput, World *world, PongCamera *cam);
 
 	bool frameStarted(const Ogre::FrameEvent &evt);
 
 
 protected:
 	InputHandler *mInputHandler;
-	AIManager *mAIManager;
+	UserInput *mUserInput;
+	//AIManager *mAIManager;
 	World *mWorld;
     PongCamera *mPongCamera;
 	Ogre::RenderWindow *mRenderWindow;
