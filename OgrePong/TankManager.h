@@ -5,6 +5,7 @@
 
 class ProjectileManager;
 class Tank;
+class AITank;
 
 class TankManager
 {
@@ -14,7 +15,7 @@ public:
 	void Think(float);
 	//
 	Tank* getPlayerTank(){return playerTank;}
-	std::vector<Tank*> *getTankList(){ return &tankList; }
+	std::vector<AITank*> *getTankList(){ return &tankList; }
 	bool checkCollision();
 	
 protected:
@@ -22,7 +23,7 @@ protected:
 	Tank* playerTank;
 	Ogre::SceneManager* mSceneManager;
 	ProjectileManager* mProjectileManager;
-	std::vector<Tank*> tankList;
+	std::vector<AITank*> tankList;
 
 };
 #endif
