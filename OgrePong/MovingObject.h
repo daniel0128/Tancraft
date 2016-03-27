@@ -5,8 +5,7 @@
 */
 
 #pragma once
-#ifndef __MovingObject_h_
-#define __MovingObject_h_
+
 #include "OgreMatrix3.h"
 #include "OgreVector3.h"
 namespace Ogre{
@@ -15,6 +14,7 @@ namespace Ogre{
 	class Node;
 }
 class PongCamera;
+class Physics;
 
 class MovingObject
 {
@@ -38,7 +38,13 @@ public:
 
 	Ogre::SceneNode *SceneNodeManager(){return mObjectSceneNode;}
 	Ogre::SceneManager *getSceneManager(){return mSceneManager;}
+	Ogre::Vector3 getWorldPosition(){return mObjectSceneNode->_getDerivedPosition();}
+
 	Ogre::Vector3 getVelocity(){return velocity;}
+	btCollisionShape* getShape(){return movingShape;}
+	btRigidBody* getRigidBody(){ return rBody;}
+
+	//Physics* physics(){ return mPhysics; }
 
 	//rotate function
 	void yaw(Ogre::Radian theta);
@@ -50,15 +56,21 @@ public:
 
 	//camera funtion
 	void setCameraToLocal(Ogre::Camera *camera);
+
+	static float Distance(MovingObject*, MovingObject*);
 	
 protected:
 
 	float movingSpeed;
 	float palstance;
 	Ogre::Vector3 velocity;
+	//Physics* mPhysics;
+	btCollisionShape *movingShape;
+	btRigidBody *rBody;
+	btTransform transform;
 
     MovingObject *mParent;
     Ogre::SceneNode *mObjectSceneNode;
 	Ogre::SceneManager *mSceneManager;
 };
-#endif
+

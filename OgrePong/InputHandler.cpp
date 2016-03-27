@@ -19,9 +19,13 @@ InputHandler::InputHandler(Ogre::RenderWindow *renderWindow) :
 	mInputManager = OIS::InputManager::createInputSystem( pl );
 
 	mCurrentKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject( OIS::OISKeyboard, false /* not buffered */ ));
-	
+	//mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject( OIS::OISKeyboard, true));
+	//mKeyboard->setEventCallback(this);
 	//I added mouse operation
-	mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject(OIS::OISMouse, false));
+	
+	mCurrentMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject(OIS::OISMouse, false));
+	//mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject( OIS::OISMouse, true));
+	//mMouse->setEventCallback(this);
 }
 
 
@@ -39,12 +43,12 @@ InputHandler::WasKeyDown(OIS::KeyCode key)
 
 bool 
 InputHandler::IsMouseBtnDown(OIS::MouseButtonID button){
-	return mMouse->getMouseState().buttonDown(button);
+	return mCurrentMouse->getMouseState().buttonDown(button);
 }
 
 OIS::MouseState 
 InputHandler::GetMouseState(){
-	return mMouse->getMouseState();
+	return mCurrentMouse->getMouseState();
 }
 
 void 
@@ -52,10 +56,10 @@ InputHandler::Think(float time)
 {
 	mCurrentKeyboard->copyKeyStates(mOldKeys);
 	mCurrentKeyboard->capture();//dont understand this so not sure whether mouse need similar operation (D Z)
-
+	//mKeyboard->capture();
 	//mouse capture (D Z)
-	mMouse->capture();
-
+	//mMouse->capture();
+	mCurrentMouse->capture();
 }
 
 
@@ -64,6 +68,65 @@ InputHandler::~InputHandler()
 	mInputManager->destroyInputObject(mCurrentKeyboard);
 
 	//so I need destroy mouse here
-	mInputManager->destroyInputObject(mMouse);
+	mInputManager->destroyInputObject(mCurrentMouse);
 }
 
+//bool 
+//InputHandler::mouseMoved(const OIS::MouseEvent &e){
+//	std::for_each(mouseListeners.begin(),mouseListeners.end(),[&](OIS::MouseListener *il)
+//	{
+//		if(il){
+//			il->mouseMoved(e);
+//		}
+//	});
+//	return true;
+//}    
+//
+//bool InputHandler::mousePressed(const OIS::MouseEvent &e,OIS::MouseButtonID id){
+//	std::for_each(mouseListeners.begin(), mouseListeners.end(), [&](OIS::MouseListener *il)
+//	{
+//		if(il){
+//			il->mouseReleased(e,id);
+//		}
+//	});
+//	return true;
+//}
+//
+//bool 
+//InputHandler::mouseReleased(const OIS::MouseEvent &e,OIS::MouseButtonID id){
+//	std::for_each(mouseListeners.begin(), mouseListeners.end(), [&](OIS::MouseListener *il)
+//	{
+//		if (il)
+//		{
+//			il->mouseReleased(e, id);
+//		}
+//	});
+//	return true;
+//}
+//
+//bool 
+//InputHandler::keyPressed(const OIS::KeyEvent &e){
+//	std::for_each(keyListeners.begin(),keyListeners.end(),[&](KeyListener *il){
+//		if(il)
+//			il->keyPressed(e);
+//	});
+//    return true;
+//}
+//
+//bool 
+//InputHandler::keyReleased(const OIS::KeyEvent &e){
+//	std::for_each(keyListeners.begin(),keyListeners.end(),[&](KeyListener *il){
+//		if(il)
+//			il->keyReleased(e);
+//	});
+//    return true;
+//}
+//
+//void
+//InputHandler::addKeyListener( OIS::KeyListener *keyListener ){
+//	this->keyListeners.push_back(keyListener);
+//}
+//void
+//InputHandler::addMouseListener( OIS::MouseListener *mouseListener ){
+//	this->mouseListeners.push_back(mouseListener);
+//}

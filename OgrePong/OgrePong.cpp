@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "ProjectileManager.h"
 #include "UserInput.h"
+#include "Physics.h"
 
 #include "Ogre.h"
 #include "OgreConfigFile.h"
@@ -44,7 +45,7 @@ void
 OgrePong::createCamera()
 {
 	mCamera = mSceneMgr->createCamera("PlayerCam");
-	mCamera->setPosition(Ogre::Vector3(0,0,-100));
+	mCamera->setPosition(Ogre::Vector3(0,20,-200));
 	mCamera->lookAt(Ogre::Vector3(0,0,0));
 }
 
@@ -57,7 +58,7 @@ OgrePong::createCamera()
 void 
 OgrePong::createFrameListener(void)
 {
-	mPongFrameListener = new MainListener(mWindow, mInputHandler, mUserInput, mWorld, mPongCamera);
+	mPongFrameListener = new MainListener(mWindow, mInputHandler, mUserInput, mWorld, mPongCamera,mPhysics);
 	mRoot->addFrameListener(mPongFrameListener);
 }
 
@@ -66,11 +67,12 @@ OgrePong::createFrameListener(void)
 void 
 OgrePong::createViewports(void)
 {
-	    // Create one viewport, entire window
-        Ogre::Viewport* vp = mWindow->addViewport(mCamera);
-        vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
-        // Alter the camera aspect ratio to match the viewport
-        mCamera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));    
+	// Create one viewport, entire window
+	Ogre::Viewport* vp = mWindow->addViewport(mCamera);
+	vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
+	// Alter the camera aspect ratio to match the viewport
+	
+	mCamera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));    
 }
 
 // Here is where we set up all of the non-rendering stuff (our world, various managers, etc)
@@ -78,7 +80,8 @@ void
 OgrePong::createScene() 
 {
     mInputHandler = new InputHandler(mWindow);
-
+	mPhysics = tankPhysics;
+	//mPhysics = mSceneMgr->getPhysics();
 	// If a class needs access to another class, you can pass in a pointer in the constructor
 	//   or, if you need circular accesses (player needs access to the world, and the world needs
 	//   access to the player), you can add the pointers later.  Here's an example of both ways
@@ -87,7 +90,7 @@ OgrePong::createScene()
 	//mAIManager = new AIManager(mSceneMgr,mProjectileManager);
 	mTankManager = new TankManager(mSceneMgr,mProjectileManager);
 	mUserInput = new UserInput(mInputHandler,mTankManager,mProjectileManager);
-
+	mProjectileManager->addTankManager(mTankManager);
     mWorld = new World(mSceneMgr, mInputHandler, mProjectileManager,mTankManager);
     mPongCamera = new PongCamera(mCamera, mTankManager);
 

@@ -18,6 +18,7 @@ class InputHandler;
 class World;
 class PongCamera;
 class MainListener;
+class Physics;
 
 class ProjectileManager;
 class TankManager;
@@ -81,11 +82,13 @@ protected:
 	//AIManager* mAIManager;
 	ProjectileManager* mProjectileManager; 
 	UserInput* mUserInput;
-	
+	Physics* mPhysics;
+
     Ogre::Root *mRoot;
     Ogre::Camera* mCamera;
     Ogre::SceneManager* mSceneMgr;
-    Ogre::RenderWindow* mWindow;
+    //Physics* mSceneMgr;
+	Ogre::RenderWindow* mWindow;
     Ogre::String mResourcePath;
 	Ogre::OverlaySystem *mOverlaySystem;
 

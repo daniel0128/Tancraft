@@ -8,6 +8,8 @@ namespace Ogre{
 };
 
 class Projectile;
+class TankManager;
+class Tank;
 
 class ProjectileManager
 {
@@ -18,8 +20,11 @@ public:
 	void Think(float time);
 	void reset();
 	std::vector<Projectile*> *getBulletList(){return &mProjectileList;}
+	void addTankManager(TankManager* tManager){mTankManager=tManager;}
+	Tank* checkCollision(Projectile* pro);
 protected:
 	Ogre::SceneManager* mSceneManager;
 	std::vector<Projectile*> mProjectileList;
+	TankManager* mTankManager;
 };
 #endif

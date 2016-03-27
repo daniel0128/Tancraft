@@ -19,12 +19,13 @@ public:
 		BACK_RIGHT,
 		FOR_LEFT,
 		FOR_RIGHT,
+		STOP,
 	};
 	Tank(Ogre::SceneManager *sceneManager, ProjectileManager *pManager, const char *carMesh, const char *barrelMesh);
 	~Tank(void);
-	MovingObject *getTank(){return mTank;}
+	//MovingObject *getTank(){return mTank;}
 	MovingObject *getBarrel(){return mBarrel;}
-
+	
 	void barrelRotate(Rotate way, float time);
 	void tankMove(TankDirection way, float time);
 	void fire();
@@ -34,11 +35,11 @@ public:
 protected:
 	MovingObject *mBarrel;
 	MovingObject *mCar;
-	MovingObject *mTank;
+	//MovingObject *mTank;
 
 	ProjectileManager *mProjectileManager;
 	float fireCD;
 	MovingObject *mParent;
-    Ogre::SceneNode *mObjectSceneNode;
+    //Ogre::SceneNode *mObjectSceneNode;
 };
 

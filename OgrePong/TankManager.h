@@ -14,12 +14,15 @@ public:
 	void Think(float);
 	//
 	Tank* getPlayerTank(){return playerTank;}
-	std::vector<Tank*> *getTankList(){ return &tankList;}
+	std::vector<Tank*> *getTankList(){ return &tankList; }
+	bool checkCollision();
+	
 protected:
 
 	Tank* playerTank;
 	Ogre::SceneManager* mSceneManager;
 	ProjectileManager* mProjectileManager;
 	std::vector<Tank*> tankList;
+
 };
 #endif

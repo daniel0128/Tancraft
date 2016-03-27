@@ -6,6 +6,11 @@
 #include "OgreOverlay.h"
 #include "OgreFontManager.h"
 #include "OgreTextAreaOverlayElement.h"
+#include "OgreVector3.h"
+#include "OgreQuaternion.h"
+#include "OgreAxisAlignedBox.h"
+#include "btBulletCollisionCommon.h"
+#include "btBulletDynamicsCommon.h"
  
 // any other header can be included, as usual
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32

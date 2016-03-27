@@ -51,15 +51,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(OGRE_HOME)/include/OGRE/Overlay;$(OGRE_HOME)/boost/;$(OGRE_HOME)/include/OIS;$(OGRE_HOME)/include/OGRE;$(OGRE_HOME)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OGRE_HOME)/include/OGRE/Overlay;$(OGRE_HOME)/boost/;$(OGRE_HOME)/include/OIS;$(OGRE_HOME)/include/OGRE;$(OGRE_HOME)/include;D:\bullet3-2.83.7\src;D:\bullet3-2.83.7\build\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm233 %(AdditionalOptions)</AdditionalOptions>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(OGRE_HOME)/boost/lib;$(OGRE_HOME)/lib/$(configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>OIS_d.lib;OgreMain_d.lib;OgreOverlay_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OGRE_HOME)/boost/lib;$(OGRE_HOME)/lib/$(configuration);D:\bullet3-2.83.7\build\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OIS_d.lib;OgreMain_d.lib;OgreOverlay_d.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>copy "$(OGRE_HOME)\bin\$(Configuration)\OgreMain_d.dll" "$(OutDir)"
@@ -84,7 +84,7 @@ copy resources_d.cfg "$(OutDir)"</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(OGRE_HOME)/include/OGRE/Overlay;$(OGRE_HOME)/boost/;$(OGRE_HOME)/include/OIS;$(OGRE_HOME)/include/OGRE;$(OGRE_HOME)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(OGRE_HOME)/include/OGRE/Overlay;$(OGRE_HOME)/boost/;$(OGRE_HOME)/include/OIS;$(OGRE_HOME)/include/OGRE;$(OGRE_HOME)/include;D:\bullet3-2.83.7\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm233 %(AdditionalOptions)</AdditionalOptions>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
     </ClCompile>
@@ -114,10 +114,13 @@ copy resources.cfg "$(OutDir)"</Command>
   <ItemGroup>
     <ClInclude Include="AIManager.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="MainListener.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="OgrePong.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -129,11 +132,15 @@ copy resources.cfg "$(OutDir)"</Command>
   <ItemGroup>
     <ClCompile Include="AIManager.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="InputListener.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainListener.cpp" />
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="OgrePong.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileManager.cpp" />
     <ClCompile Include="stdafx.cpp">
