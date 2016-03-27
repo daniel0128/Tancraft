@@ -6,37 +6,16 @@
 #include "OgreSceneNode.h"
 
 Tank::Tank(Ogre::SceneManager *sceneManager, ProjectileManager* pManager, const char *carMesh, const char * barrelMesh)
-	:MovingObject(sceneManager,NULL,NULL),mProjectileManager(pManager),fireCD(.0)
+	:MovingObject(sceneManager,NULL,NULL),mProjectileManager(pManager),alive(true)
 {
 	//mProjectileManager = pManager;
 	//mTank = new MovingObject(sceneManager, NULL, NULL);
 	//mTank->setScale(Ogre::Vector3(5,5,5));
+	fireCD=float(rand()%20+1)/20;
 	setScale(Ogre::Vector3(3,3,3));
 	mCar = new MovingObject(sceneManager, carMesh, this);
 	mBarrel = new MovingObject(sceneManager,barrelMesh,this);
 	mBarrel ->SceneNodeManager()-> setPosition(Ogre::Vector3(0,1.5,0));
-
-	//movingShape = new btBoxShape(btVector3(8,2,6));
-	//tankPhysics->getCollisionShapes()->push_back(movingShape);
-
-	//btTransform startTransform = this->transform;
-	//startTransform.setIdentity();
-	//startTransform.setRotation(btQuaternion(mObjectSceneNode->getOrientation().x,mObjectSceneNode->getOrientation().y,
-	//	mObjectSceneNode->getOrientation().z,mObjectSceneNode->getOrientation().w));
-
-	//btScalar mass = 10.0f;
-	//btVector3 localInertia(0,0,0);
-	////Ogre::Vector3 worldPosition = getWorldPosition();
-	////startTransform.setOrigin(btVector3(worldPosition.x,worldPosition.y,worldPosition.z));
-	//movingShape->calculateLocalInertia(mass, localInertia);
-	//btDefaultMotionState *myMotionState = new btDefaultMotionState(startTransform);
-
-	//btRigidBody::btRigidBodyConstructionInfo rbInfo( mass, myMotionState, movingShape, localInertia);
-	//rBody = new btRigidBody(rbInfo);
-	//rBody->setRestitution(0);
-	//rBody->setUserPointer(mObjectSceneNode);
-	//tankPhysics->getDynamicsWorld()->addRigidBody(rBody);
-
 }
 
 Tank::~Tank(void)
@@ -122,3 +101,13 @@ Tank::fire(){
 		fireCD=0.5;
 	}
 }
+
+void
+Tank::beHitted(){
+	alive=false;
+	movingSpeed=0;
+	roll(Ogre::Radian(Ogre::Math::PI));
+}
+
+//void
+//Tank::Think(float time){}

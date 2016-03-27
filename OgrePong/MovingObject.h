@@ -68,7 +68,7 @@ protected:
 //	btCollisionShape *movingShape;
 //	btRigidBody *rBody;
 //	btTransform transform;
-
+	Ogre::Entity* ent;
     MovingObject *mParent;
     Ogre::SceneNode *mObjectSceneNode;
 	Ogre::SceneManager *mSceneManager;

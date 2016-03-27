@@ -16,15 +16,24 @@ UserInput::~UserInput(void)
 
 void
 UserInput::Think(float time){
+	bool collision = mTankManager->checkCollision();
 	if (mInputHandler->WasKeyDown(OIS::KC_W)){//foward
 		//playerTank->getRigidBody()->setLinearVelocity(btVector3(30,0,0));
 		playerTank->tankMove(Tank::FOWARD,time);
+		if(mTankManager->checkCollision())
+		{playerTank->tankMove(Tank::FOWARD,-time);}
 	}else if(mInputHandler->IsKeyDown(OIS::KC_S)){//back
 		playerTank->tankMove(Tank::BACK,time);
+		if(mTankManager->checkCollision())
+		{playerTank->tankMove(Tank::BACK,-time);}
 	}else if(mInputHandler->IsKeyDown(OIS::KC_A)){//left
 		playerTank->tankMove(Tank::LEFT,time);
+		if(mTankManager->checkCollision())
+		{playerTank->tankMove(Tank::LEFT,-time);}
 	}else if(mInputHandler->IsKeyDown(OIS::KC_D)){//right
 		playerTank->tankMove(Tank::RIGHT,time);
+		if(mTankManager->checkCollision())
+		{playerTank->tankMove(Tank::RIGHT,-time);}
 	}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_A)){
 	}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_D)){
 	}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_A)){

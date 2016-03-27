@@ -11,16 +11,15 @@ MovingObject::
 	else
 		mObjectSceneNode = sceneManager->getRootSceneNode()->createChildSceneNode();
 	if(meshName){
-		Ogre::Entity *ent1 = sceneManager->createEntity(meshName);
-		mObjectSceneNode->attachObject(ent1);
+		ent = sceneManager->createEntity(meshName);
+		mObjectSceneNode->attachObject(ent);
 	}
-//	rBody=NULL;
-//	movingShape=NULL;
 }
 
 MovingObject::~MovingObject(){
 	mObjectSceneNode->detachAllObjects();
 	mSceneManager->destroySceneNode(mObjectSceneNode);
+	if(ent) mSceneManager->destroyEntity(ent);
 }
 
 void MovingObject::setCameraToLocal(Ogre::Camera *camera){

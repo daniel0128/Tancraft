@@ -1,0 +1,80 @@
+#include "stdafx.h"
+#include "AITank.h"
+#include "TankManager.h"
+
+
+AITank::AITank(Ogre::SceneManager *sceneManager, ProjectileManager *pManager,TankManager* tManager,const char *carMesh, const char *barrelMesh)
+	:Tank(sceneManager,pManager,carMesh,barrelMesh),mTankManager(tManager),operationTimer(0),operationCD(2.0)
+{
+	movingSpeed=5;
+
+}
+
+
+AITank::~AITank(void)
+{
+}
+
+void
+AITank::Think(float time){
+	if(alive){
+		operationTimer-= time;
+		//float TANK_SPEED = mvelocity;
+		Ogre::Quaternion rotYaw;
+	
+
+		if (operationTimer<=0)
+		{
+			operationTimer = operationCD;
+			aiRotation = rand()%2+1;
+			aiMove = rand()%4+1;
+		}
+	
+
+		switch (aiRotation)
+		{
+		case 1:
+			barrelRotate(YAW,-time*palstance);
+			break;
+		case 2:
+			barrelRotate(YAW,time*palstance);
+			break;
+		default:
+			break;
+		}
+
+		switch(aiMove)
+		{
+		case 1:
+			tankMove(Tank::FOWARD,time*movingSpeed);
+			if(mTankManager->checkCollision())
+			{tankMove(Tank::FOWARD,-time*movingSpeed);}
+			break;
+		case 2:
+			tankMove(Tank::BACK,time*movingSpeed);
+			if(mTankManager->checkCollision())
+			{tankMove(Tank::BACK,-time*movingSpeed);}
+			break;
+			
+		case 3:
+			tankMove(Tank::LEFT,time*movingSpeed);
+			if(mTankManager->checkCollision())
+			{tankMove(Tank::LEFT,-time*movingSpeed);}
+			break;
+		case 4:
+			tankMove(Tank::RIGHT,time*movingSpeed);
+			if(mTankManager->checkCollision())
+			{tankMove(Tank::RIGHT,-time*movingSpeed);}
+			break;
+		default:
+			break;		
+		}	
+		fireCD -= time;
+		if (fireCD <= 0)
+		{
+			fire();
+			fireCD = 2.0;	
+		}
+	}
+	
+}

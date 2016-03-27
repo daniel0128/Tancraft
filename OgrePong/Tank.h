@@ -31,6 +31,8 @@ public:
 	void fire();
 	float getFireCD(){return fireCD;}
 	void setFireCD(float cd){fireCD=cd;}
+	//virtual void Think(float time);
+	void beHitted();
 
 protected:
 	MovingObject *mBarrel;
@@ -40,6 +42,6 @@ protected:
 	ProjectileManager *mProjectileManager;
 	float fireCD;
 	MovingObject *mParent;
-    //Ogre::SceneNode *mObjectSceneNode;
+	bool alive;
 };
 
