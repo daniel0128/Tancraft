@@ -5,11 +5,11 @@
 #include "World.h"
 #include "Camera.h"
 #include <ois.h>
-#include "Physics.h"
+//#include "Physics.h"
 
 
-MainListener::MainListener(Ogre::RenderWindow *mainWindow, InputHandler *inputManager, UserInput *input, World *world, PongCamera *cam, Physics* physicsEngine) :
-mRenderWindow(mainWindow), mInputHandler(inputManager), mUserInput(input), mWorld(world), mPongCamera(cam),mPhysicsEngine(physicsEngine)
+MainListener::MainListener(Ogre::RenderWindow *mainWindow, InputHandler *inputManager, UserInput *input, World *world, PongCamera *cam):
+mRenderWindow(mainWindow), mInputHandler(inputManager), mUserInput(input), mWorld(world), mPongCamera(cam)
 {
 	x = 0;
 }
@@ -34,28 +34,28 @@ bool
 	mUserInput->Think(time);
 	// Call think methods on any other managers / etc you want to add
 
-	//physics engine
-	if (mPhysicsEngine){
-		mPhysicsEngine->getDynamicsWorld()->stepSimulation(time); //suppose you have 60 frames per second
- 
-		for (int i = 0; i< this->mPhysicsEngine->getCollisionObjectCount(); i++) {
-			btCollisionObject* obj = this->mPhysicsEngine->getDynamicsWorld()->getCollisionObjectArray()[i];
-			btRigidBody* body = btRigidBody::upcast(obj);
- 
-			if (body && body->getMotionState()){
-				btTransform trans;
-				body->getMotionState()->getWorldTransform(trans);
- 
-				void *userPointer = body->getUserPointer();
-				if (userPointer) {
-					btQuaternion orientation = trans.getRotation();
-					Ogre::SceneNode *sceneNode = static_cast<Ogre::SceneNode *>(userPointer);
-					sceneNode->setPosition(Ogre::Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
-					sceneNode->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
-				}
-			}
-		}
-	}
+	////physics engine
+	//if (mPhysicsEngine){
+	//	mPhysicsEngine->getDynamicsWorld()->stepSimulation(time); //suppose you have 60 frames per second
+ //
+	//	for (int i = 0; i< this->mPhysicsEngine->getCollisionObjectCount(); i++) {
+	//		btCollisionObject* obj = this->mPhysicsEngine->getDynamicsWorld()->getCollisionObjectArray()[i];
+	//		btRigidBody* body = btRigidBody::upcast(obj);
+ //
+	//		if (body && body->getMotionState()){
+	//			btTransform trans;
+	//			body->getMotionState()->getWorldTransform(trans);
+ //
+	//			void *userPointer = body->getUserPointer();
+	//			if (userPointer) {
+	//				btQuaternion orientation = trans.getRotation();
+	//				Ogre::SceneNode *sceneNode = static_cast<Ogre::SceneNode *>(userPointer);
+	//				sceneNode->setPosition(Ogre::Vector3(trans.getOrigin().getX(), trans.getOrigin().getY(), trans.getOrigin().getZ()));
+	//				sceneNode->setOrientation(Ogre::Quaternion(orientation.getW(), orientation.getX(), orientation.getY(), orientation.getZ()));
+	//			}
+	//		}
+	//	}
+	//}
 
 
 	bool keepGoing = true;

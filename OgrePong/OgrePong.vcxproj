@@ -120,7 +120,6 @@ copy resources.cfg "$(OutDir)"</Command>
     <ClInclude Include="MainListener.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="OgrePong.h" />
-    <ClInclude Include="Physics.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -140,7 +139,6 @@ copy resources.cfg "$(OutDir)"</Command>
     <ClCompile Include="MainListener.cpp" />
     <ClCompile Include="MovingObject.cpp" />
     <ClCompile Include="OgrePong.cpp" />
-    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileManager.cpp" />
     <ClCompile Include="stdafx.cpp">

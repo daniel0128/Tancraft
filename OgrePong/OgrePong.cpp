@@ -6,7 +6,6 @@
 #include "Camera.h"
 #include "ProjectileManager.h"
 #include "UserInput.h"
-#include "Physics.h"
 
 #include "Ogre.h"
 #include "OgreConfigFile.h"
@@ -58,7 +57,7 @@ OgrePong::createCamera()
 void 
 OgrePong::createFrameListener(void)
 {
-	mPongFrameListener = new MainListener(mWindow, mInputHandler, mUserInput, mWorld, mPongCamera,mPhysics);
+	mPongFrameListener = new MainListener(mWindow, mInputHandler, mUserInput, mWorld, mPongCamera);
 	mRoot->addFrameListener(mPongFrameListener);
 }
 
@@ -80,8 +79,6 @@ void
 OgrePong::createScene() 
 {
     mInputHandler = new InputHandler(mWindow);
-	mPhysics = tankPhysics;
-	//mPhysics = mSceneMgr->getPhysics();
 	// If a class needs access to another class, you can pass in a pointer in the constructor
 	//   or, if you need circular accesses (player needs access to the world, and the world needs
 	//   access to the player), you can add the pointers later.  Here's an example of both ways

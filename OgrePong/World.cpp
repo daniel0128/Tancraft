@@ -22,38 +22,38 @@
 #include "InputHandler.h"
 #include "ProjectileManager.h"
 #include "TankManager.h"
-#include "Physics.h"
+//#include "Physics.h"
 
 World::World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager,TankManager *tManager) 
 	: mSceneManager(sceneManager), mInputHandler(input), mProjectileManager(projectileManager),mTankManager(tManager)
 {
 	mSceneManager->setAmbientLight(Ogre::ColourValue(1,1,1));
 	
-	//a rigid plane
-	Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
-	Ogre::MeshPtr planePtr = Ogre::MeshManager::getSingleton().createPlane("ground", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane, 1500, 1500, 20, 20, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
-	//Ogre::Entity *entGround = sceneManager->createEntity("GroundEntity", "ground");
-	Ogre::SceneNode *groundNode = sceneManager->getRootSceneNode()->createChildSceneNode("groundNode");
-	//groundNode->attachObject(entGround);
+	////a rigid plane
+	//Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 0);
+	//Ogre::MeshPtr planePtr = Ogre::MeshManager::getSingleton().createPlane("ground", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane, 1500, 1500, 20, 20, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
+	////Ogre::Entity *entGround = sceneManager->createEntity("GroundEntity", "ground");
+	//Ogre::SceneNode *groundNode = sceneManager->getRootSceneNode()->createChildSceneNode("groundNode");
+	////groundNode->attachObject(entGround);
 
-	btTransform groundTransform;
-	groundTransform.setIdentity();
-	groundTransform.setOrigin(btVector3(0, 0, 0));
- 
-	btScalar groundMass(0.); //the mass is 0, because the ground is immovable (static)
-	btVector3 localGroundInertia(0, 0, 0);
- 
-	btCollisionShape *groundShape = new btStaticPlaneShape(btVector3(0,1,0),0);
-		//btBoxShape(btVector3(btScalar(50.), btScalar(50.), btScalar(50.)));
-	btDefaultMotionState *groundMotionState = new btDefaultMotionState(groundTransform);
- 
-	groundShape->calculateLocalInertia(groundMass, localGroundInertia);
- 
-	btRigidBody::btRigidBodyConstructionInfo groundRBInfo(groundMass, groundMotionState, groundShape, localGroundInertia);
-	btRigidBody *groundBody = new btRigidBody(groundRBInfo);
- 
-	//add the body to the dynamics world
-	tankPhysics->getDynamicsWorld()->addRigidBody(groundBody);
+	//btTransform groundTransform;
+	//groundTransform.setIdentity();
+	//groundTransform.setOrigin(btVector3(0, 0, 0));
+ //
+	//btScalar groundMass(0.); //the mass is 0, because the ground is immovable (static)
+	//btVector3 localGroundInertia(0, 0, 0);
+ //
+	//btCollisionShape *groundShape = new btStaticPlaneShape(btVector3(0,1,0),0);
+	//	//btBoxShape(btVector3(btScalar(50.), btScalar(50.), btScalar(50.)));
+	//btDefaultMotionState *groundMotionState = new btDefaultMotionState(groundTransform);
+ //
+	//groundShape->calculateLocalInertia(groundMass, localGroundInertia);
+ //
+	//btRigidBody::btRigidBodyConstructionInfo groundRBInfo(groundMass, groundMotionState, groundShape, localGroundInertia);
+	//btRigidBody *groundBody = new btRigidBody(groundRBInfo);
+ //
+	////add the body to the dynamics world
+	//tankPhysics->getDynamicsWorld()->addRigidBody(groundBody);
 
 
 

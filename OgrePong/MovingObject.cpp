@@ -1,7 +1,6 @@
 #include "MovingObject.h"
 #include "OgreSceneManager.h"
 #include "OgreEntity.h"
-#include "Physics.h"
 
 MovingObject::
 	MovingObject(Ogre::SceneManager *sceneManager, const char *meshName, MovingObject *parent) 
@@ -15,8 +14,8 @@ MovingObject::
 		Ogre::Entity *ent1 = sceneManager->createEntity(meshName);
 		mObjectSceneNode->attachObject(ent1);
 	}
-	rBody=NULL;
-	movingShape=NULL;
+//	rBody=NULL;
+//	movingShape=NULL;
 }
 
 MovingObject::~MovingObject(){
@@ -36,29 +35,12 @@ MovingObject::setScale(Ogre::Vector3 newScale){
 }
 void 
 MovingObject::setPosition(Ogre::Vector3 pos){
-	if(rBody && rBody->getMotionState()){
-		btTransform trans = rBody->getWorldTransform();
-		trans.setOrigin(btVector3(pos.x,pos.y,pos.z));
-		rBody->setWorldTransform(trans);
-	}else
-		mObjectSceneNode->setPosition(pos);
+	mObjectSceneNode->setPosition(pos);
 }
 
 void 
 MovingObject::yaw(Ogre::Radian theta){
-	if(rBody && rBody->getMotionState()){
-		btQuaternion deltaQ;
-		deltaQ = btQuaternion(btVector3(0,1,0),theta.valueRadians());
-		
-		btTransform tr=rBody->getCenterOfMassTransform();
-		//rBody->getMotionState()->getWorldTransform(tr);
-		//tr.setIdentity();
-		btQuaternion orientation = tr.getRotation();
-		orientation = deltaQ*orientation;
-		tr.setRotation(orientation);
-		rBody->setCenterOfMassTransform(tr);
-	}else
-		mObjectSceneNode->yaw(theta);
+	mObjectSceneNode->yaw(theta);
 }
 void 
 MovingObject::pitch(Ogre::Radian theta){
@@ -66,18 +48,7 @@ MovingObject::pitch(Ogre::Radian theta){
 }
 void 
 MovingObject::roll(Ogre::Radian theta){
-	if(rBody){
-		btQuaternion deltaQ;
-		deltaQ = btQuaternion(btVector3(0,0,1),theta.valueRadians());
-		btTransform tr;
-		rBody->getMotionState()->getWorldTransform(tr);
-		btQuaternion orientation = tr.getRotation();
-		orientation = orientation*deltaQ;
-		tr.setRotation(orientation);
-		rBody->setWorldTransform(tr);
-	}
-	else
-		mObjectSceneNode->roll(theta);
+	mObjectSceneNode->roll(theta);
 }
 
 //move fuction

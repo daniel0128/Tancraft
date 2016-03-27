@@ -2,7 +2,7 @@
 #include "OgreSceneManager.h"
 #include "Projectile.h"
 #include "ProjectileManager.h"
-#include "Physics.h"
+//#include "Physics.h"
 #include "OgreSceneNode.h"
 
 Tank::Tank(Ogre::SceneManager *sceneManager, ProjectileManager* pManager, const char *carMesh, const char * barrelMesh)

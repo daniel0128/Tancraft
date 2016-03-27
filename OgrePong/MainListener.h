@@ -15,13 +15,13 @@ class InputHandler;
 class UserInput;
 class World;
 class PongCamera;
-class Physics;
+//class Physics;
 
 class MainListener : public Ogre::FrameListener
 {
 public:
 	MainListener(Ogre::RenderWindow *mainWindow, InputHandler *inputHandler, 
-		UserInput *userInput, World *world, PongCamera *cam, Physics *physicsEngine);
+		UserInput *userInput, World *world, PongCamera *cam);
 
 	bool frameStarted(const Ogre::FrameEvent &evt);
 
@@ -33,7 +33,7 @@ protected:
 	World *mWorld;
     PongCamera *mPongCamera;
 	Ogre::RenderWindow *mRenderWindow;
-	Physics *mPhysicsEngine;
+//	Physics *mPhysicsEngine;
 
 	int x;
 };

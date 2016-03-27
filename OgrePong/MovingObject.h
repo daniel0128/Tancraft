@@ -41,8 +41,8 @@ public:
 	Ogre::Vector3 getWorldPosition(){return mObjectSceneNode->_getDerivedPosition();}
 
 	Ogre::Vector3 getVelocity(){return velocity;}
-	btCollisionShape* getShape(){return movingShape;}
-	btRigidBody* getRigidBody(){ return rBody;}
+//	btCollisionShape* getShape(){return movingShape;}
+//	btRigidBody* getRigidBody(){ return rBody;}
 
 	//Physics* physics(){ return mPhysics; }
 
@@ -65,9 +65,9 @@ protected:
 	float palstance;
 	Ogre::Vector3 velocity;
 	//Physics* mPhysics;
-	btCollisionShape *movingShape;
-	btRigidBody *rBody;
-	btTransform transform;
+//	btCollisionShape *movingShape;
+//	btRigidBody *rBody;
+//	btTransform transform;
 
     MovingObject *mParent;
     Ogre::SceneNode *mObjectSceneNode;
