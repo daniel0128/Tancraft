@@ -1,14 +1,11 @@
 Visual Studio 2012/
 Visual Studio 2012Templates/
-OgrePong.sdf
-OgrePong/OgrePong.vcxproj.user
-OgrePong.opensdf
+TanCraft.sdf
 Debug/
-OgrePong.v11.suo
-OgrePong/Debug/
-ipch/ogrepong-e37ccbc5/ogrepong-27f514d.ipch
-ipch/ogrepong-e37ccbc5/tancraft-6f070edf.ipch
+TanCraft.v11.suo
+TanCraft/Debug/
 Tancraft.sdf
 Tancraft.suo
 Tancraft.v11.suo
 Tancraft.opensdf
+*.ipch
