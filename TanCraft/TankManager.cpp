@@ -44,9 +44,9 @@ TankManager::checkCollision(){
 					return true;
 			}
 		}
-		if(pos.x>500||pos.x<-500 || pos.y>500 ||pos.y<-500||pos.z>500||pos.z<-500)
+		if(pos.x>490||pos.x<-490||pos.z>490||pos.z<-490)
 			return true;
-		if(playerPos.x>500||playerPos.x<-500 || playerPos.y>500 ||playerPos.y<-500||playerPos.z>500||playerPos.z<-500)
+		if(playerPos.x>490||playerPos.x<-490 || playerPos.z>490||playerPos.z<-490)
 			return true;
 	}
 	return false;
