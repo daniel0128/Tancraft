@@ -48,8 +48,6 @@ TanCraft::createCamera()
 	mCamera->lookAt(Ogre::Vector3(0,0,0));
 }
 
-
-
 // We will create a single frame listener, to handle our main event loop.  While we could
 // add as many frame listeners as we want (and let the main rendering loop call them),
 // we would not have as much control over the order that the listeners are called --
