@@ -3,7 +3,7 @@
 #include "Tank.h"
 #include "AITank.h"
 #include "TankManager.h"
-#include <iostream>
+#include "Explosion.h"
 
 ProjectileManager::ProjectileManager(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 {
@@ -32,10 +32,23 @@ ProjectileManager::Think(float time){
 				t->beHitted();
 		}
 		if(p->getRange()<0||t||p->getWorldPosition().y<0){
+
+			explosion++;
+			mExplosionList.push_back(new Explosion(mSceneManager, explosion, mProjectileList[i]->getWorldPosition()));
 			delete mProjectileList[i];
 			mProjectileList.erase(mProjectileList.begin()+i);
 		}
 	}
+	if (explosion > 10000000)
+		explosion = 0;
+	for(size_t i =0;i<mExplosionList.size();i++){
+		mExplosionList[i]->Think(time);
+		if(mExplosionList[i]->getTime()<0){
+			delete mExplosionList[i];
+			mExplosionList.erase(mExplosionList.begin()+i);
+		}
+	}
+
 }
 
 void

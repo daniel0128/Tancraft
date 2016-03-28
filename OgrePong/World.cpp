@@ -30,8 +30,19 @@ World::World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileMa
 	mSceneManager->setAmbientLight(Ogre::ColourValue(1,1,1));
 	mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE);
 	//sky
-	//mSceneManager->setSkyDome(true, "Examples/CloudySky", 5, 8);  
-
+	mSceneManager->setSkyDome(true, "Examples/CloudySky", 5, 8);  
+	//ground
+	Ogre::Plane groundPlane; 
+	groundPlane.normal = Ogre::Vector3::UNIT_Y; //the plane will face to
+	groundPlane.d = -5; //It's basically the distance to move the plane along the given normal.
+	Ogre::MeshManager::getSingleton().createPlane("Gplane",
+		Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, groundPlane,
+		1000, 1000, 10, 10, true, 1, 5, 5, Ogre::Vector3::NEGATIVE_UNIT_Z); //when u face it , the up side 
+	Ogre::Entity* gPlaneEnt = mSceneManager->createEntity( "GroundPlane", "Gplane" );
+	mSceneManager->getRootSceneNode()->createChildSceneNode("GROUND",Ogre::Vector3(0,0,0))->attachObject(gPlaneEnt); 
+	gPlaneEnt->setMaterialName("Examples/Floor");  
+	//gPlaneEnt->setVisible(0);
+	gPlaneEnt->setCastShadows(true);
 	// Yeah, this should be done automatically for all fonts referenced in an overlay file.
 	//  But there is a bug in the OGRE code so we need to do it manually.
 	//Ogre::ResourceManager::ResourceMapIterator iter = Ogre::FontManager::getSingleton().getResourceIterator();

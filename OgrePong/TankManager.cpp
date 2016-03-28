@@ -15,9 +15,6 @@ TankManager::TankManager(Ogre::SceneManager* sceneManager, ProjectileManager* pM
 		aiTank->setPosition(Ogre::Vector3(x,10,z));
 		tankList.push_back(aiTank);
 	}
-	//trying code
-	//tankList[2]->getRigidBody()->setAngularVelocity(btVector3(0,2,0));
-//	tankList[2]->getRigidBody()->setAngularVelocity(btVector3(0,10,0));
 }
 
 TankManager::~TankManager(void)
@@ -33,7 +30,10 @@ TankManager::Think(float time){
 
 bool 
 TankManager::checkCollision(){
+	Ogre::Vector3 pos;
+	Ogre::Vector3 playerPos = playerTank->getWorldPosition();
 	for(size_t i=0;i<tankList.size();i++){
+		pos = tankList[i]->getWorldPosition();
 		if(MovingObject::Distance(tankList[i],playerTank)<15)
 			return true;
 		if (tankList.size()>2)		//enemyTank and enemyTank
@@ -44,6 +44,10 @@ TankManager::checkCollision(){
 					return true;
 			}
 		}
+		if(pos.x>500||pos.x<-500 || pos.y>500 ||pos.y<-500||pos.z>500||pos.z<-500)
+			return true;
+		if(playerPos.x>500||playerPos.x<-500 || playerPos.y>500 ||playerPos.y<-500||playerPos.z>500||playerPos.z<-500)
+			return true;
 	}
 	return false;
 }

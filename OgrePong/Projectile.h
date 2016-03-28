@@ -7,9 +7,7 @@ class Projectile :
 {
 public:
 
-	Projectile(Ogre::SceneManager *sceneManager,ProjectileManager* pManager, Ogre::Vector3 position);
 	Projectile(Ogre::SceneManager *sceneManager,ProjectileManager* pManager, Tank* fromTank);
-	Projectile(Ogre::SceneManager *sceneManager,ProjectileManager* pManager, Ogre::Vector3 position, Ogre::Vector3 velocity);
 	~Projectile(void);
 
 	void Think(float time);

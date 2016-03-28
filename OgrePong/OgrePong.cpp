@@ -91,9 +91,6 @@ OgrePong::createScene()
     mWorld = new World(mSceneMgr, mInputHandler, mProjectileManager,mTankManager);
     mPongCamera = new PongCamera(mCamera, mTankManager);
 
-	//mAIManager = new AIManager(mWorld);
-	//mWorld->addCamera(mPongCamera);
-	//mUserInput->setCameraToTank();
 }
 
 bool 
@@ -127,7 +124,7 @@ OgrePong::setup(void)
     if (!carryOn) return false;
 
     // Create the SceneManager, in this case a generic one
-    mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC, "PongSMInstance");
+    mSceneMgr = mRoot->createSceneManager(Ogre::ST_GENERIC, "TankSMInstance");
     createCamera();
     createViewports();
 

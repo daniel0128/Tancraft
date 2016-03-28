@@ -57,7 +57,6 @@ Tank::tankMove(TankDirection way, float time){
 		case BACK_RIGHT:
 			break;
 		default:
-
 			break;
 	}
 }
