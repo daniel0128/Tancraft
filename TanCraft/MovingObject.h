@@ -8,17 +8,18 @@
 
 #include "OgreMatrix3.h"
 #include "OgreVector3.h"
+#include "SWObject.h"
 namespace Ogre{
 	class SceneNode;
     class SceneManager;	
 	class Node;
 }
 class PongCamera;
-class Physics;
 
 class MovingObject
+	:public SWObject
 {
-public:
+public: 
 	enum TransformSpace{
 		TS_LOCAL,
 		TS_PARENT,
@@ -32,19 +33,14 @@ public:
 	//setter and getter
 	void setSpeed(float speed){movingSpeed = speed;}
 	void setPalstance(float palstance){this->palstance = palstance;}
-	void setPosition(Ogre::Vector3);
+	//void setPosition(Ogre::Vector3);
 	void setVelocity(Ogre::Vector3);
-	void setScale(Ogre::Vector3 newScale);
+	//void setScale(Ogre::Vector3 newScale);
 
 	Ogre::SceneNode *SceneNodeManager(){return mObjectSceneNode;}
 	Ogre::SceneManager *getSceneManager(){return mSceneManager;}
-	Ogre::Vector3 getWorldPosition(){return mObjectSceneNode->_getDerivedPosition();}
-
+	
 	Ogre::Vector3 getVelocity(){return velocity;}
-//	btCollisionShape* getShape(){return movingShape;}
-//	btRigidBody* getRigidBody(){ return rBody;}
-
-	//Physics* physics(){ return mPhysics; }
 
 	//rotate function
 	void yaw(Ogre::Radian theta);
@@ -57,20 +53,12 @@ public:
 	//camera funtion
 	void setCameraToLocal(Ogre::Camera *camera);
 
-	static float Distance(MovingObject*, MovingObject*);
+	//static float Distance(MovingObject*, MovingObject*);
 	
 protected:
 
 	float movingSpeed;
 	float palstance;
 	Ogre::Vector3 velocity;
-	//Physics* mPhysics;
-//	btCollisionShape *movingShape;
-//	btRigidBody *rBody;
-//	btTransform transform;
-	Ogre::Entity* ent;
-    MovingObject *mParent;
-    Ogre::SceneNode *mObjectSceneNode;
-	Ogre::SceneManager *mSceneManager;
 };
 

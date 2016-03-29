@@ -1,11 +1,12 @@
 #include "TanCraft.h"
 #include "World.h"
+#include "TankManager.h"
 #include "InputHandler.h"
-#include "AIManager.h"
 #include "MainListener.h"
 #include "Camera.h"
 #include "ProjectileManager.h"
 #include "UserInput.h"
+#include "Geometry.h"
 
 #include "Ogre.h"
 #include "OgreConfigFile.h"
@@ -81,14 +82,24 @@ TanCraft::createScene()
 	//   or, if you need circular accesses (player needs access to the world, and the world needs
 	//   access to the player), you can add the pointers later.  Here's an example of both ways
 	//   of doing it, giving the world access to the camera and the input handler.
-	mProjectileManager = new ProjectileManager(mSceneMgr);
-	//mAIManager = new AIManager(mSceneMgr,mProjectileManager);
-	mTankManager = new TankManager(mSceneMgr,mProjectileManager);
-	mUserInput = new UserInput(mInputHandler,mTankManager,mProjectileManager);
-	mProjectileManager->addTankManager(mTankManager);
-    mWorld = new World(mSceneMgr, mInputHandler, mProjectileManager,mTankManager);
-    mPongCamera = new PongCamera(mCamera, mTankManager);
 
+	mGeometry = new Geometry(mSceneMgr);
+
+	mProjectileManager = new ProjectileManager(mSceneMgr);
+	mProjectileManager->addGeometry(mGeometry);
+
+	mTankManager = new TankManager(mSceneMgr,mProjectileManager);
+	mTankManager->addGeometry(mGeometry);
+
+	mUserInput = new UserInput(mInputHandler,mTankManager,mProjectileManager);
+	mUserInput->addGeometry(mGeometry);
+
+	mProjectileManager->addTankManager(mTankManager);
+	
+    
+
+	mWorld = new World(mSceneMgr, mInputHandler, mProjectileManager,mTankManager,mGeometry);
+    mPongCamera = new PongCamera(mCamera, mTankManager);
 }
 
 bool 

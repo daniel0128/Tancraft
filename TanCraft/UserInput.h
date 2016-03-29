@@ -5,6 +5,7 @@ class InputHandler;
 class TankManager;
 class ProjectileManager;
 class Tank;
+class Geometry;
 
 class UserInput
 {
@@ -12,12 +13,15 @@ public:
 	UserInput(InputHandler* input, TankManager* tManager, ProjectileManager* pManager);
 	~UserInput(void);
 	void Think(float time);
+	void addGeometry(Geometry* geo);
 	//void setCameraToTank();
 protected:
 	TankManager* mTankManager;
 	Tank* playerTank;
 	InputHandler* mInputHandler;
 	ProjectileManager* mProjectileManager;
+	Geometry* mGeometry;
+
 };
 #endif
 

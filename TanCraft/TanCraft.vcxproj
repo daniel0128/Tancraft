@@ -113,15 +113,17 @@ copy resources.cfg "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AIManager.h" />
     <ClInclude Include="AITank.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Explosion.h" />
+    <ClInclude Include="Geometry.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MainListener.h" />
     <ClInclude Include="MovingObject.h" />
+    <ClInclude Include="StaticObject.h" />
+    <ClInclude Include="SWObject.h" />
     <ClInclude Include="TanCraft.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileManager.h" />
@@ -132,17 +134,19 @@ copy resources.cfg "$(OutDir)"</Command>
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AIManager.cpp" />
     <ClCompile Include="AITank.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="InputListener.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainListener.cpp" />
     <ClCompile Include="MovingObject.cpp" />
+    <ClCompile Include="StaticObject.cpp" />
+    <ClCompile Include="SWObject.cpp" />
     <ClCompile Include="TanCraft.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ProjectileManager.cpp" />

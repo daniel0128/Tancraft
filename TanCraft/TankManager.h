@@ -6,6 +6,7 @@
 class ProjectileManager;
 class Tank;
 class AITank;
+class Geometry;
 
 class TankManager
 {
@@ -17,6 +18,7 @@ public:
 	Tank* getPlayerTank(){return playerTank;}
 	std::vector<AITank*> *getTankList(){ return &tankList; }
 	bool checkCollision();
+	void addGeometry(Geometry* geo);
 	
 protected:
 
@@ -24,6 +26,7 @@ protected:
 	Ogre::SceneManager* mSceneManager;
 	ProjectileManager* mProjectileManager;
 	std::vector<AITank*> tankList;
+	Geometry* mGeometry;
 
 };
 #endif

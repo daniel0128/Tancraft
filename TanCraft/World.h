@@ -14,13 +14,13 @@ class Tank;
 class Projectile;
 class ProjectileManager;
 class TankManager;
-
+class Geometry;
 
 class World
 {
 public:
 	
-	World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager,TankManager *tankManager);
+	World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager,TankManager *tankManager,Geometry* geometry);
 
     // You'll want various methods to access & change your world here
     
@@ -44,18 +44,13 @@ protected:
 	PongCamera *mCamera;
 	ProjectileManager *mProjectileManager;
 	TankManager* mTankManager;
+	Geometry* mGeometry;
 	
 
 	// Here is where you keep all your world data.
 	//  You probably want to use containers (arrays / lists / classes / etc) to ogranize them, 
 	//    instead of a whole list of variables.  
-	//Tank *playerTank;
-	
-	//only for test
-	Projectile *bullet1;
-	Projectile *bullet2;
-	Projectile *bullet3;
-	Projectile *bullet4;
+
 
 	std::string infoStr;
 };
