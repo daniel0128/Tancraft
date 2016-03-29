@@ -43,9 +43,51 @@ World::World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileMa
 	//overly->show();
 }
 
+//overlay
+void
+World::Display()
+{
+
+	Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
+
+	Ogre::Overlay *HP = om.getByName("Hp");
+	hp = Ogre::StringConverter::toString("100");
+	Ogre::TextAreaOverlayElement *hpp = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Hp/Panel/HPtext");
+	hpp->setCaption("HP:  "+hp);
+	
+	Ogre::Overlay *BulletPower = om.getByName("BulletPower");
+	bulletPower = Ogre::StringConverter::toString("10");
+	Ogre::TextAreaOverlayElement *bp = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("BulletPower/Panel/BulletPowertext");
+	bp->setCaption("BulletPower:   "+ bulletPower);
+
+	Ogre::Overlay *Enemy = om.getByName("Enemy");
+	level = Ogre::StringConverter::toString("1");
+	Ogre::TextAreaOverlayElement *lv = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Enemy/Panel/level");
+	lv->setCaption("Level: "+level);
+
+	enemies = Ogre::StringConverter::toString("3");
+	Ogre::TextAreaOverlayElement *es = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Enemy/Panel/enemies");
+	es->setCaption("Enemies: "+enemies);
+
+	enemyHP = Ogre::StringConverter::toString("20");
+	Ogre::TextAreaOverlayElement *ehp = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Enemy/Panel/eHP");
+	ehp->setCaption("EnemyHP: "+enemyHP);
+
+	enemyBulletPower = Ogre::StringConverter::toString("50");
+	Ogre::TextAreaOverlayElement *ebp = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Enemy/Panel/eBP");
+	ebp->setCaption("EnemyBulletPower: "+enemyBulletPower);
+
+
+	HP->show();
+	BulletPower->show();
+	Enemy->show();
+
+}
+
 void 
 World::Think(float time)
 {
+	Display();
 	//bullet2->getRigidBody()->translate(btVector3(0.0f,0.0f,0.02f));
 	mProjectileManager ->Think(time);
 	mTankManager->Think(time);

@@ -161,6 +161,10 @@ copy resources.cfg "$(OutDir)"</Command>
     <ClCompile Include="UserInput.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ogre.cfg" />
+    <None Include="ogre_d.cfg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
