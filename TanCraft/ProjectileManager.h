@@ -11,6 +11,7 @@ class Projectile;
 class TankManager;
 class Tank;
 class Explosion;
+class Geometry;
 
 class ProjectileManager
 {
@@ -23,6 +24,7 @@ public:
 	std::vector<Projectile*> *getBulletList(){return &mProjectileList;}
 	void addTankManager(TankManager* tManager){mTankManager=tManager;}
 	Tank* checkCollision(Projectile* pro);
+	void addGeometry(Geometry* geo);
 
 protected:
 	Ogre::SceneManager* mSceneManager;
@@ -30,5 +32,6 @@ protected:
 	TankManager* mTankManager;
 	int explosion;
 	std::vector<Explosion* > mExplosionList;
+	Geometry* mGeometry;
 };
 #endif

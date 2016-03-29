@@ -5,14 +5,14 @@ TankManager::TankManager(Ogre::SceneManager* sceneManager, ProjectileManager* pM
 	:mSceneManager(sceneManager),mProjectileManager(pManager)
 {
 	playerTank = new Tank(mSceneManager,mProjectileManager,"Car.mesh","Battery.mesh");
-	playerTank->setPosition(Ogre::Vector3(-40,10,0));
+	playerTank->setPosition(Ogre::Vector3(-40,7,0));
 	
 	for(int i=0;i<3;i++){
 		AITank *aiTank = new AITank(mSceneManager,mProjectileManager,this,"Car.mesh","Battery.mesh");
 		int x, z;
-		x=Ogre::Math::RangeRandom(-100,100);
-		z=Ogre::Math::RangeRandom(-100,100);
-		aiTank->setPosition(Ogre::Vector3(x,10,z));
+		x=Ogre::Math::RangeRandom(-400,400);
+		z=Ogre::Math::RangeRandom(-400,400);
+		aiTank->setPosition(Ogre::Vector3(x,7,z));
 		tankList.push_back(aiTank);
 	}
 }
@@ -50,4 +50,8 @@ TankManager::checkCollision(){
 			return true;
 	}
 	return false;
+}
+
+void TankManager::addGeometry(Geometry* geo){
+	mGeometry = geo;
 }

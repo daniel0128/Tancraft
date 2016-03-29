@@ -2,6 +2,7 @@
 #include "UserInput.h"
 #include "TankManager.h"
 #include "InputHandler.h"
+#include "Geometry.h"
 
 UserInput::UserInput(InputHandler* input, TankManager* tManager, ProjectileManager* pManager)
 	:mInputHandler(input),mTankManager(tManager),mProjectileManager(pManager)
@@ -69,4 +70,8 @@ UserInput::Think(float time){
 	 }
 	 float cd = playerTank->getFireCD();
 	 playerTank->setFireCD(cd-time);
+}
+
+void UserInput::addGeometry(Geometry* geo){
+	mGeometry=geo;
 }

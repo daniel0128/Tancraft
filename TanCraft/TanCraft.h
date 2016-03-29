@@ -13,13 +13,12 @@ namespace Ogre {
     class SceneManager;
 	class OverlaySystem;
 }
-class AIManager;
+
 class InputHandler;
 class World;
 class PongCamera;
 class MainListener;
-class Physics;
-
+class Geometry;
 class ProjectileManager;
 class TankManager;
 class UserInput;
@@ -69,7 +68,6 @@ protected:
     //  game logic
 	void createFrameListener(void);
 
-
 	MainListener *mPongFrameListener;
 
 
@@ -79,15 +77,13 @@ protected:
 
 	//what I added (D Z)
 	TankManager* mTankManager;
-	//AIManager* mAIManager;
 	ProjectileManager* mProjectileManager; 
 	UserInput* mUserInput;
-	Physics* mPhysics;
+	Geometry* mGeometry;
 
     Ogre::Root *mRoot;
     Ogre::Camera* mCamera;
     Ogre::SceneManager* mSceneMgr;
-    //Physics* mSceneMgr;
 	Ogre::RenderWindow* mWindow;
     Ogre::String mResourcePath;
 	Ogre::OverlaySystem *mOverlaySystem;

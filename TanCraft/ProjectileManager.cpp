@@ -4,6 +4,7 @@
 #include "AITank.h"
 #include "TankManager.h"
 #include "Explosion.h"
+#include "Geometry.h"
 
 ProjectileManager::ProjectileManager(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 {
@@ -61,6 +62,7 @@ ProjectileManager::reset()
    }
 	mProjectileList.clear();
 }
+
 Tank*
 ProjectileManager::checkCollision(Projectile* p){
 	if(!mTankManager||mTankManager->getTankList()->size()==0)
@@ -78,4 +80,8 @@ ProjectileManager::checkCollision(Projectile* p){
 	if(MovingObject::Distance( mTankManager->getPlayerTank(),p)<10 && pT != pF)
 		return mTankManager->getPlayerTank();
 	return NULL;
+}
+
+void ProjectileManager::addGeometry(Geometry* geo){
+	mGeometry = geo;
 }
