@@ -145,5 +145,11 @@
     <None Include="ogre.cfg">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="resources.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="resources_d.cfg">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

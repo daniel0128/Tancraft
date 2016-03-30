@@ -35,6 +35,9 @@ public:
     // Start runn
     void go(void);
 
+	//level
+	static int level;
+
 protected:
 
     ///////////////////////////////////////////////////

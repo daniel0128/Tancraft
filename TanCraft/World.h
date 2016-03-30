@@ -1,6 +1,12 @@
 #ifndef __World_h_
 #define __World_h_
 
+
+// sound system
+#include "include/irrKlang.h"
+using namespace irrklang;
+#pragma comment(lib, "irrKlang.lib")
+
 // Forward delcarations of Ogre classes.  Note the Ogre namespace!
 namespace Ogre {
     class SceneNode;
@@ -64,6 +70,9 @@ protected:
 	std::string enemies;		//Remaining Enemy
 	std::string enemyHP;		//Enemy HP
 	std::string enemyBulletPower; //Enemy BP
+
+	//sound
+	ISoundEngine* mSoundEngine; 
 };
 
 #endif

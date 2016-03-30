@@ -24,11 +24,17 @@
 #include "ProjectileManager.h"
 #include "TankManager.h"
 
+
 World::World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager,TankManager *tManager,Geometry* geometry) 
 	: mSceneManager(sceneManager), mInputHandler(input), mProjectileManager(projectileManager),mTankManager(tManager),mGeometry(geometry)
 {
 	mSceneManager->setAmbientLight(Ogre::ColourValue(1,1,1));
 	
+	mSoundEngine = createIrrKlangDevice();
+	mSoundEngine->play2D("getout.ogg",true);
+
+
+
 	// Yeah, this should be done automatically for all fonts referenced in an overlay file.
 	//  But there is a bug in the OGRE code so we need to do it manually.
 	Ogre::ResourceManager::ResourceMapIterator iter = Ogre::FontManager::getSingleton().getResourceIterator();
@@ -37,11 +43,6 @@ World::World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileMa
 		iter.getNext()->load(); 
 	}
 
-	// Now we will show the sample overlay.  Look in the file Content/Overlays/Example to
-	// see how this overlay is defined
-	//Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
-	//Ogre::Overlay *overlay = om.getByName("Sample");
-	//overlay->show();
 }
 
 //overlay
@@ -89,12 +90,9 @@ void
 World::Think(float time)
 {
 	if(TankManager::gameRunning){
-		//bullet2->getRigidBody()->translate(btVector3(0.0f,0.0f,0.02f));
-	Display();
-	//bullet2->getRigidBody()->translate(btVector3(0.0f,0.0f,0.02f));
-
-	mProjectileManager ->Think(time);
-	mTankManager->Think(time);
+		Display();
+		mProjectileManager ->Think(time);
+		mTankManager->Think(time);
 
 	//std::string hudText6;
 	//hudText6 = Ogre::StringConverter::toString(mTankManager->enemyNum);
@@ -102,10 +100,7 @@ World::Think(float time)
 	//Ogre::Overlay *overlay = om.getByName("Sample");
 	//Ogre::TextAreaOverlayElement *hud6 = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Hud2/Panel/Text6");
 	//overlay->setCaption("Enemy HP:  "+hudText6);
-
-
 	//Ogre::TextAreaOverlayElement *te = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Sample/Panel/Text1");
-
 	//te->setCaption(" level: "+Ogre::StringConverter::toString(TankManager::level)+
 	//	"\n enemy: "+Ogre::StringConverter::toString(mTankManager->enemyNum)+
 	//	"\n list: "+Ogre::StringConverter::toString(mTankManager->getTankList()->size())+
@@ -114,16 +109,8 @@ World::Think(float time)
 	//	);
 	}
 	else{
-		//std::string hudText6;
-
 		Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
-	//Ogre::Overlay *overlay = om.getByName("Sample");
-	//Ogre::TextAreaOverlayElement *hud6 = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Hud2/Panel/Text6");
-	//overlay->setCaption("Enemy HP:  "+hudText6);
-
-
 		Ogre::TextAreaOverlayElement *te = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Sample/Panel/Text1");
-
 		te->setCaption("Press ENTER to restart game");
 	}
 }
