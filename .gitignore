@@ -9,3 +9,5 @@ Tancraft.suo
 Tancraft.v11.suo
 Tancraft.opensdf
 *.ipch
+!TanCraft/Debug/ikpMP3.dll
+!TanCraft/Debug/irrKlang.dll
