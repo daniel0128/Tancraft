@@ -16,7 +16,7 @@ namespace Ogre {
 
 class InputHandler;
 class World;
-class PongCamera;
+class TankCamera;
 class MainListener;
 class Geometry;
 class ProjectileManager;
@@ -73,7 +73,7 @@ protected:
 
 	InputHandler *mInputHandler;
 	World *mWorld;
-    PongCamera *mPongCamera;
+    TankCamera *mTankCamera;
 
 	//what I added (D Z)
 	TankManager* mTankManager;
@@ -83,6 +83,7 @@ protected:
 
     Ogre::Root *mRoot;
     Ogre::Camera* mCamera;
+	Ogre::Camera* mapCamera;
     Ogre::SceneManager* mSceneMgr;
 	Ogre::RenderWindow* mWindow;
     Ogre::String mResourcePath;

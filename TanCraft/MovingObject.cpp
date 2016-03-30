@@ -5,18 +5,13 @@
 
 MovingObject::
 	MovingObject(Ogre::SceneManager *sceneManager, const char *meshName, MovingObject *parent) 
-	:SWObject(sceneManager,meshName,parent), movingSpeed(30),palstance(0.5)
+	:SWObject(sceneManager,meshName,parent), movingSpeed(50),palstance(0.5)
 {
 }
 
 MovingObject::~MovingObject(){
 }
 
-void MovingObject::setCameraToLocal(Ogre::Camera *camera){
-	mObjectSceneNode->attachObject(camera);
-	camera->setPosition(-70,20,0);
-	camera->lookAt(10,25,0);
-}
 void 
 MovingObject::yaw(Ogre::Radian theta){
 	mObjectSceneNode->yaw(theta);
@@ -43,4 +38,3 @@ MovingObject::translate(Ogre::Vector3 deltaPosition,TransformSpace relateTo){
 		mObjectSceneNode->translate(deltaPosition,Ogre::Node::TS_WORLD);
 	}
 }
-

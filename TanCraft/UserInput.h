@@ -5,6 +5,7 @@ class InputHandler;
 class TankManager;
 class ProjectileManager;
 class Tank;
+class PlayerTank;
 class Geometry;
 
 class UserInput
@@ -17,7 +18,7 @@ public:
 	//void setCameraToTank();
 protected:
 	TankManager* mTankManager;
-	Tank* playerTank;
+	PlayerTank* playerTank;
 	InputHandler* mInputHandler;
 	ProjectileManager* mProjectileManager;
 	Geometry* mGeometry;

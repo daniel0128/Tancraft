@@ -13,7 +13,7 @@ Projectile::Projectile(Ogre::SceneManager *sceneManager,ProjectileManager* pMana
 	this->setPosition(pos);
 
 	//bulletVelocity=velocity;
-	movingSpeed=500;
+	movingSpeed=700;
 	palstance=10;//),movingSpeed(20)
 	bulletVelocity = movingSpeed*velocity;
 }
@@ -29,21 +29,4 @@ Projectile::Think(float time){
 	translate(time*bulletVelocity,MovingObject::TS_WORLD);
 }
 
-bool
-Projectile::fly(float time){
-	bulletRange-=time*movingSpeed;
-	bulletVelocity-=time*Ogre::Vector3(0,20,0);
-
-	Ogre::Vector3 bulletPosition = mObjectSceneNode->getPosition();
-	Ogre::Quaternion bulletOrientation = mObjectSceneNode->getOrientation();
-	bulletPosition += bulletOrientation*bulletVelocity*time;
-	mObjectSceneNode->setPosition(bulletPosition);
-	//translate(time*bulletVelocity,MovingObject::TS_WORLD);
-
-	Tank *hitedTank = mProjectileManager->checkCollision(this);
-
-	if(bulletRange<0.000001||hitedTank!=NULL)
-		return true;
-	return false;
-}
 

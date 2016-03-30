@@ -8,7 +8,7 @@ namespace Ogre {
 }
 
 // Forward delcarations of our own classes
-class PongCamera;
+class TankCamera;
 class InputHandler;
 class Tank;
 class Projectile;
@@ -26,7 +26,7 @@ public:
     
     void Think(float time);
 	
-	void addCamera(PongCamera *c) { mCamera = c; }
+	void addCamera(TankCamera *c) { mCamera = c; }
 
 	Ogre::SceneManager *SceneManager() { return mSceneManager; }
 
@@ -41,7 +41,7 @@ protected:
 	Ogre::SceneManager *mSceneManager;
 
 	InputHandler *mInputHandler;
-	PongCamera *mCamera;
+	TankCamera *mCamera;
 	ProjectileManager *mProjectileManager;
 	TankManager* mTankManager;
 	Geometry* mGeometry;

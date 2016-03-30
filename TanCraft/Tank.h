@@ -24,14 +24,30 @@ public:
 	Tank(Ogre::SceneManager *sceneManager, ProjectileManager *pManager, const char *carMesh, const char *barrelMesh);
 	~Tank(void);
 	MovingObject *getBarrel(){return mBarrel;}
-	
+	//void setPlayerCamera(Ogre::Camera* cam);
+	//void setRadarCamera(Ogre::Camera* cam);
+
+
 	void barrelRotate(Rotate way, float time);
 	void tankMove(TankDirection way, float time);
+
 	void fire();
 	float getFireCD(){return fireCD;}
+	bool isAlive(){return alive;}
+
 	void setFireCD(float cd){fireCD=cd;}
+
+	void setFulHP(int fhp){fullHP=fhp;}
+	int getFullHP(){return fullHP;}
+
+	void setHP(int hp){HP= hp;}
+	int getHP(){return HP;}
+
+	void setBulletPower(int bp){bulletPower = bp;}
+	int getPower(){return bulletPower;}
 	//virtual void Think(float time);
-	void beHitted();
+	virtual void beHit(int){}
+	virtual bool isPlayer(){return false;}
 
 protected:
 	MovingObject *mBarrel;
@@ -42,5 +58,10 @@ protected:
 	float fireCD;
 	MovingObject *mParent;
 	bool alive;
+
+	int fullHP;
+	int HP;
+	int bulletPower;
+
 };
 

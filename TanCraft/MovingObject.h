@@ -14,7 +14,7 @@ namespace Ogre{
     class SceneManager;	
 	class Node;
 }
-class PongCamera;
+class TankCamera;
 
 class MovingObject
 	:public SWObject

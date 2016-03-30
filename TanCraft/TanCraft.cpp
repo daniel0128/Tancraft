@@ -45,8 +45,8 @@ void
 TanCraft::createCamera()
 {
 	mCamera = mSceneMgr->createCamera("PlayerCam");
-	mCamera->setPosition(Ogre::Vector3(0,20,-200));
-	mCamera->lookAt(Ogre::Vector3(0,0,0));
+
+	mapCamera=mSceneMgr->createCamera("MapCam");
 }
 
 // We will create a single frame listener, to handle our main event loop.  While we could
@@ -56,7 +56,7 @@ TanCraft::createCamera()
 void 
 TanCraft::createFrameListener(void)
 {
-	mPongFrameListener = new MainListener(mWindow, mInputHandler, mUserInput, mWorld, mPongCamera);
+	mPongFrameListener = new MainListener(mWindow, mInputHandler, mUserInput, mWorld, mTankCamera);
 	mRoot->addFrameListener(mPongFrameListener);
 }
 
@@ -70,7 +70,14 @@ TanCraft::createViewports(void)
 	vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
 	// Alter the camera aspect ratio to match the viewport
 	
-	mCamera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));    
+	mCamera->setAspectRatio(Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));   
+
+	Ogre::Viewport* vp2 = mWindow->addViewport(mapCamera, 1, 0.03, 0.03, 0.3, 0.3);
+    vp2->setBackgroundColour(Ogre::ColourValue(0,0,0));
+	vp2->setOverlaysEnabled(false);
+	mCamera->setAspectRatio(Ogre::Real(vp2->getActualWidth()) / Ogre::Real(vp2->getActualHeight()));    
+
+
 }
 
 // Here is where we set up all of the non-rendering stuff (our world, various managers, etc)
@@ -95,11 +102,9 @@ TanCraft::createScene()
 	mUserInput->addGeometry(mGeometry);
 
 	mProjectileManager->addTankManager(mTankManager);
-	
-    
 
 	mWorld = new World(mSceneMgr, mInputHandler, mProjectileManager,mTankManager,mGeometry);
-    mPongCamera = new PongCamera(mCamera, mTankManager);
+    mTankCamera = new TankCamera(mCamera, mapCamera, mTankManager);
 }
 
 bool 
@@ -223,7 +228,7 @@ TanCraft::destroyScene()
 {
     delete mWorld;
     delete mUserInput;
-    delete mPongCamera;
+    delete mTankCamera;
     delete mInputHandler;
 	delete mProjectileManager;
 }

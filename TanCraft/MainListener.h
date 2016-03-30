@@ -14,14 +14,14 @@ namespace Ogre
 class InputHandler;
 class UserInput;
 class World;
-class PongCamera;
+class TankCamera;
 //class Physics;
 
 class MainListener : public Ogre::FrameListener
 {
 public:
 	MainListener(Ogre::RenderWindow *mainWindow, InputHandler *inputHandler, 
-		UserInput *userInput, World *world, PongCamera *cam);
+		UserInput *userInput, World *world, TankCamera *cam);
 
 	bool frameStarted(const Ogre::FrameEvent &evt);
 
@@ -31,7 +31,7 @@ protected:
 	UserInput *mUserInput;
 	//AIManager *mAIManager;
 	World *mWorld;
-    PongCamera *mPongCamera;
+    TankCamera *mTankCamera;
 	Ogre::RenderWindow *mRenderWindow;
 //	Physics *mPhysicsEngine;
 
