@@ -13,6 +13,7 @@ public:
 	void setRadarCamera(Ogre::Camera* cam);
 	void shaking(float time);
 	void shake();
+	void reset();
 
 protected:
 	Ogre::Real shakeAmplitude;
