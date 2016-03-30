@@ -4,6 +4,7 @@
 TankManager::TankManager(Ogre::SceneManager* sceneManager, ProjectileManager* pManager)
 	:mSceneManager(sceneManager),mProjectileManager(pManager)
 {
+
 	playerTank = new Tank(mSceneManager,mProjectileManager,"Car.mesh","Battery.mesh");
 	playerTank->setPosition(Ogre::Vector3(-40,7,0));
 	
@@ -15,6 +16,7 @@ TankManager::TankManager(Ogre::SceneManager* sceneManager, ProjectileManager* pM
 		aiTank->setPosition(Ogre::Vector3(x,7,z));
 		tankList.push_back(aiTank);
 	}
+
 }
 
 TankManager::~TankManager(void)

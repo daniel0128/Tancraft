@@ -19,6 +19,8 @@ public:
 	std::vector<AITank*> *getTankList(){ return &tankList; }
 	bool checkCollision();
 	void addGeometry(Geometry* geo);
+
+
 	
 protected:
 
@@ -27,6 +29,14 @@ protected:
 	ProjectileManager* mProjectileManager;
 	std::vector<AITank*> tankList;
 	Geometry* mGeometry;
+
+	//level
+	int totalEnemyNum;
+	int remainEnemyNum;
+	int playerHP;
+	int playerBP;
+	int AIHP;
+	int AIBP;
 
 };
 #endif

@@ -23,11 +23,17 @@
 #include "ProjectileManager.h"
 #include "TankManager.h"
 
+
 World::World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager,TankManager *tManager,Geometry* geometry) 
 	: mSceneManager(sceneManager), mInputHandler(input), mProjectileManager(projectileManager),mTankManager(tManager),mGeometry(geometry)
 {
 	mSceneManager->setAmbientLight(Ogre::ColourValue(1,1,1));
 	
+	mSoundEngine = createIrrKlangDevice();
+	mSoundEngine->play2D("getout.ogg",true);
+
+
+
 	// Yeah, this should be done automatically for all fonts referenced in an overlay file.
 	//  But there is a bug in the OGRE code so we need to do it manually.
 	//Ogre::ResourceManager::ResourceMapIterator iter = Ogre::FontManager::getSingleton().getResourceIterator();
@@ -91,6 +97,8 @@ World::Think(float time)
 	//bullet2->getRigidBody()->translate(btVector3(0.0f,0.0f,0.02f));
 	mProjectileManager ->Think(time);
 	mTankManager->Think(time);
+
+
 }
 
 
