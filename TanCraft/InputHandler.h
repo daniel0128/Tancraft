@@ -6,7 +6,7 @@
 #include "OgreRenderWindow.h"
 
 class World;
-class PongCamera;
+class TankCamera;
 class InputHandler;
 
 

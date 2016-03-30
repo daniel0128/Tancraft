@@ -122,6 +122,7 @@ copy resources.cfg "$(OutDir)"</Command>
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MainListener.h" />
     <ClInclude Include="MovingObject.h" />
+    <ClInclude Include="PlayerTank.h" />
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="SWObject.h" />
     <ClInclude Include="TanCraft.h" />
@@ -145,6 +146,7 @@ copy resources.cfg "$(OutDir)"</Command>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainListener.cpp" />
     <ClCompile Include="MovingObject.cpp" />
+    <ClCompile Include="PlayerTank.cpp" />
     <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="SWObject.cpp" />
     <ClCompile Include="TanCraft.cpp" />

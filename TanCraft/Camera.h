@@ -10,11 +10,11 @@ namespace Ogre
 class TankManager;
 
 
-class PongCamera
+class TankCamera
 {
 
 public:
-    PongCamera(Ogre::Camera *renderCamera, TankManager* tManager); 
+    TankCamera(Ogre::Camera *renderCamera, Ogre::Camera *mapCamera, TankManager* tManager); 
 	Ogre::Camera *getCamera(){return mRenderCamera;}
     void Think(float time);
     // If you have a different cameras, you'll want some acessor methods here.

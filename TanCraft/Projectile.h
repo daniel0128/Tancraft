@@ -15,11 +15,15 @@ public:
 	float getRange(){return bulletRange;}
 	Tank* getFrom(){return mfromTank;}
 
+	void setPower(int p){power = p;}
+	int getPower(){return power;}
+
 protected:
 	float bulletRange;
 	Tank* mfromTank;
 	Ogre::Vector3 startPosition;
 	Ogre::Vector3 bulletVelocity;
 	ProjectileManager* mProjectileManager;
+	int power;
 };
 

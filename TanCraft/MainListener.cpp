@@ -8,8 +8,8 @@
 //#include "Physics.h"
 
 
-MainListener::MainListener(Ogre::RenderWindow *mainWindow, InputHandler *inputManager, UserInput *input, World *world, PongCamera *cam):
-mRenderWindow(mainWindow), mInputHandler(inputManager), mUserInput(input), mWorld(world), mPongCamera(cam)
+MainListener::MainListener(Ogre::RenderWindow *mainWindow, InputHandler *inputManager, UserInput *input, World *world, TankCamera *cam):
+mRenderWindow(mainWindow), mInputHandler(inputManager), mUserInput(input), mWorld(world), mTankCamera(cam)
 {
 	x = 0;
 }
@@ -30,7 +30,7 @@ bool
     //   Feel free to change this to something that makes more sense to you.
 	mInputHandler->Think(time);
 	mWorld->Think(time);
-    mPongCamera->Think(time);
+    //mTankCamera->Think(time);
 	mUserInput->Think(time);
 	// Call think methods on any other managers / etc you want to add
 

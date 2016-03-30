@@ -2,6 +2,7 @@
 #include "Projectile.h"
 #include "Tank.h"
 #include "AITank.h"
+#include "PlayerTank.h"
 #include "TankManager.h"
 #include "Explosion.h"
 #include "Geometry.h"
@@ -28,10 +29,11 @@ ProjectileManager::Think(float time){
 		Tank* t =checkCollision(mProjectileList[i]);
 		if(t)
 		{
-			if(t==mTankManager->getPlayerTank()){
-
+			if(t->isPlayer()){
+				t->beHit( (*(mTankManager->getTankList()))[i]->getPower() );
+				((PlayerTank*)t)->shake();
 			}else
-				t->beHitted();
+				t->beHit(mTankManager->getPlayerTank()->getPower());
 		}
 		if(p->getRange()<0||t||
 			proPosition.y<0||proPosition.x>500||proPosition.x<-500||proPosition.z>500||proPosition.z<-500){

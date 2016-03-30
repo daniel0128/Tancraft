@@ -11,6 +11,10 @@ public:
 	AITank(Ogre::SceneManager *sceneManager, ProjectileManager *pManager,TankManager* tManager,const char *carMesh, const char *barrelMesh);
 	~AITank(void);
 	void Think(float);
+	bool isPlayer(){return false;}
+	void beHit(int);
+
+	float getDisappear(){return disappearTimer;}
 protected:
 	TankManager* mTankManager;
 	float operationCD;
@@ -18,6 +22,6 @@ protected:
 	//operation typpe
 	int aiRotation;
 	int aiMove;
-	
+	float disappearTimer;
 };
 

@@ -7,7 +7,7 @@ AITank::AITank(Ogre::SceneManager *sceneManager, ProjectileManager *pManager,Tan
 	:Tank(sceneManager,pManager,carMesh,barrelMesh),mTankManager(tManager),operationTimer(0),operationCD(2.0)
 {
 	movingSpeed=5;
-
+	disappearTimer = 1.0;
 }
 
 
@@ -16,12 +16,19 @@ AITank::~AITank(void)
 }
 
 void
+AITank::beHit(int demage){
+	HP-=demage;
+	if(HP<=0){
+		alive=false;
+		movingSpeed=0;
+		SceneNodeManager()->setOrientation(Ogre::Quaternion(1,1,-1,1));
+	}
+}
+
+void
 AITank::Think(float time){
 	if(alive){
 		operationTimer-= time;
-		//float TANK_SPEED = mvelocity;
-		Ogre::Quaternion rotYaw;
-	
 
 		if (operationTimer<=0)
 		{
@@ -75,6 +82,7 @@ AITank::Think(float time){
 			fire();
 			fireCD = 2.0;	
 		}
+	}else{
+		disappearTimer-=time;
 	}
-	
 }

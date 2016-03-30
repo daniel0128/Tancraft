@@ -23,6 +23,7 @@ Tank::~Tank(void)
 void
 Tank::tankMove(TankDirection way, float time){
 	switch (way){
+		//TODO: turn smoothly
 		case FOWARD:
 			mCar->SceneNodeManager()->setDirection(Ogre::Vector3(-1,0,0),
 				Ogre::Node::TS_PARENT,
@@ -47,7 +48,7 @@ Tank::tankMove(TankDirection way, float time){
 				Ogre::Vector3::NEGATIVE_UNIT_X);
 			translate( Ogre::Vector3(0,0,-time * movingSpeed),MovingObject::TS_LOCAL);
 			break;
-			//todo:finish this
+			//TODO:finish this
 		case FOR_LEFT:
 			break;
 		case FOR_RIGHT:
@@ -83,13 +84,9 @@ Tank::fire(){
 	if(fireCD<0.000001){
 		Projectile* bullet = new Projectile(getSceneManager(),mProjectileManager,this);
 		mProjectileManager->getBulletList()->push_back(bullet);
-		fireCD=0.5;
+		fireCD=1.0;
 	}
 }
 
-void
-Tank::beHitted(){
-	alive=false;
-	movingSpeed=0;
-	roll(Ogre::Radian(Ogre::Math::PI));
-}
+
+

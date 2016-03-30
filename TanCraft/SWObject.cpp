@@ -12,15 +12,13 @@ SWObject::SWObject(Ogre::SceneManager *sceneManager, const char *meshName, SWObj
 	if(meshName){
 		ent = sceneManager->createEntity(meshName);
 		mObjectSceneNode->attachObject(ent);
-	}
+	}else ent=NULL;
 }
 
 SWObject::~SWObject(void)
 {
 	mObjectSceneNode->detachAllObjects();
-	if(mParent)
-		delete mParent;
-	if(ent)
+	if(ent!=NULL)
 		mSceneManager->destroyEntity(ent);
 	mSceneManager->destroySceneNode(mObjectSceneNode);
 }

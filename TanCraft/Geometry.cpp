@@ -8,6 +8,8 @@ Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 	mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE);
 	//sky
 	mSceneManager->setSkyDome(true, "Examples/CloudySky", 5, 8);  
+
+
 	//ground
 	Ogre::Plane groundPlane; 
 	groundPlane.normal = Ogre::Vector3::UNIT_Y; //the plane will face to
@@ -31,7 +33,7 @@ Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 	Ogre::Entity* nWallEnt = mSceneManager->createEntity( "NorthWall", "NWall" );  
 	nWallEnt->setMaterialName("Examples/Rockwall");  
 	nWallEnt->setCastShadows(false);  
-	mSceneManager->getRootSceneNode()->createChildSceneNode("NWALL",Ogre::Vector3(0,100,-500))->attachObject(nWallEnt); 
+	mSceneManager->getRootSceneNode()->createChildSceneNode("NWALL",Ogre::Vector3(0,-100,-500))->attachObject(nWallEnt); 
 	
 	Ogre::Plane sWall; 
 	sWall.normal = Ogre::Vector3::NEGATIVE_UNIT_Z; //the plane will face to
@@ -42,7 +44,7 @@ Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 	Ogre::Entity* sWallEnt = mSceneManager->createEntity( "SouthWall", "SWall" );  
 	sWallEnt->setMaterialName("Examples/Rockwall");  
 	sWallEnt->setCastShadows(false);  
-	mSceneManager->getRootSceneNode()->createChildSceneNode("SWALL",Ogre::Vector3(0,100,500))->attachObject(sWallEnt); 
+	mSceneManager->getRootSceneNode()->createChildSceneNode("SWALL",Ogre::Vector3(0,-100,500))->attachObject(sWallEnt); 
 	
 	Ogre::Plane eWall; 
 	eWall.normal = Ogre::Vector3::NEGATIVE_UNIT_X; //the plane will face to
@@ -53,7 +55,7 @@ Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 	Ogre::Entity* eWallEnt = mSceneManager->createEntity( "EastWall", "EWall" );  
 	eWallEnt->setMaterialName("Examples/Rockwall");  
 	eWallEnt->setCastShadows(false);  
-	mSceneManager->getRootSceneNode()->createChildSceneNode("EWALL",Ogre::Vector3(500,100,0))->attachObject(eWallEnt); 
+	mSceneManager->getRootSceneNode()->createChildSceneNode("EWALL",Ogre::Vector3(500,-100,0))->attachObject(eWallEnt); 
 
 	Ogre::Plane wWall; 
 	wWall.normal = Ogre::Vector3::UNIT_X; //the plane will face to
@@ -64,7 +66,7 @@ Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 	Ogre::Entity* wWallEnt = mSceneManager->createEntity( "WestWall", "WWall" );  
 	wWallEnt->setMaterialName("Examples/Rockwall");  
 	wWallEnt->setCastShadows(false);  
-	mSceneManager->getRootSceneNode()->createChildSceneNode("WWALL",Ogre::Vector3(-500,100,0))->attachObject(wWallEnt); 
+	mSceneManager->getRootSceneNode()->createChildSceneNode("WWALL",Ogre::Vector3(-500,-100,0))->attachObject(wWallEnt); 
 	
 	StaticObject* box = new StaticObject(mSceneManager,"Box.mesh");
 	box->setPosition(Ogre::Vector3(350,20,100));
