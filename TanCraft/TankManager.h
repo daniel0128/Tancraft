@@ -20,6 +20,8 @@ public:
 	std::vector<AITank*> *getTankList(){ return &tankList; }
 	bool checkCollision();
 	void addGeometry(Geometry* geo);
+
+
 	
 	static int level;
 	static bool gameRunning;
@@ -38,6 +40,14 @@ protected:
 	std::vector<AITank*> tankList;
 	Geometry* mGeometry;
 	std::vector<Ogre::Vector3> levelCfg;
+
+	//level
+	int totalEnemyNum;
+	int remainEnemyNum;
+	int playerHP;
+	int playerBP;
+	int AIHP;
+	int AIBP;
 
 };
 #endif
