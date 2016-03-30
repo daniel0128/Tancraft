@@ -35,6 +35,9 @@ public:
 	//This is not neccesary if we do not allow user to control camera respectively (D Z)
 	InputHandler *getHandler(){return mInputHandler;}
 	void setInfoStr(std::string info){infoStr = info;}
+
+	//overlay
+	void Display();
 	
 protected:
 
@@ -53,6 +56,14 @@ protected:
 
 
 	std::string infoStr;
+
+	//overlay
+	std::string hp;		//HP
+	std::string bulletPower;		//BP
+	std::string level;		//Level
+	std::string enemies;		//Remaining Enemy
+	std::string enemyHP;		//Enemy HP
+	std::string enemyBulletPower; //Enemy BP
 };
 
 #endif
