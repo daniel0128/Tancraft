@@ -48,15 +48,31 @@ Tank::tankMove(TankDirection way, float time){
 				Ogre::Vector3::NEGATIVE_UNIT_X);
 			translate( Ogre::Vector3(0,0,-time * movingSpeed),MovingObject::TS_LOCAL);
 			break;
-			//TODO:finish this
-		case FOR_LEFT:
-			break;
-		case FOR_RIGHT:
-			break;
-		case BACK_LEFT:
-			break;
-		case BACK_RIGHT:
-			break;
+
+		//case FOR_LEFT:
+		//	mCar->SceneNodeManager()->setDirection(Ogre::Vector3(-1,0,1),
+		//		Ogre::Node::TS_PARENT,
+		//		Ogre::Vector3::NEGATIVE_UNIT_X);
+		//	this->translate(Ogre::Math::Sin(45) *Ogre::Vector3(time*movingSpeed,0,-time * movingSpeed), MovingObject::TS_LOCAL);
+		//	break;
+		//case FOR_RIGHT:
+		//	mCar->SceneNodeManager()->setDirection(Ogre::Vector3(-1,0,-1),
+		//		Ogre::Node::TS_PARENT,
+		//		Ogre::Vector3::NEGATIVE_UNIT_X);
+		//	this->translate(Ogre::Math::Sin(45) *Ogre::Vector3(time*movingSpeed,0,time * movingSpeed), MovingObject::TS_LOCAL);
+		//	break;
+		//case BACK_LEFT:
+		//	mCar->SceneNodeManager()->setDirection(Ogre::Vector3(1,0,1),
+		//		Ogre::Node::TS_PARENT,
+		//		Ogre::Vector3::NEGATIVE_UNIT_X);
+		//	this->translate(Ogre::Math::Sin(45) *Ogre::Vector3(-time*movingSpeed,0,-time * movingSpeed), MovingObject::TS_LOCAL);
+		//	break;
+		//case BACK_RIGHT:
+		//	mCar->SceneNodeManager()->setDirection(Ogre::Vector3(1,0,-1),
+		//		Ogre::Node::TS_PARENT,
+		//		Ogre::Vector3::NEGATIVE_UNIT_X);
+		//	this->translate(Ogre::Math::Sin(45) *Ogre::Vector3(-time*movingSpeed,0,time * movingSpeed), MovingObject::TS_LOCAL);
+		//	break;
 		default:
 			break;
 	}
