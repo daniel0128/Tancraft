@@ -90,7 +90,7 @@ void UserInput::hitBuff(){
 	std::vector<StaticObject*> * buffList = mGeometry->getBuffList();
 	for(size_t i=0; i<buffList->size();i++){
 		s = (StaticObject* )(*buffList)[i];
-		if(SWObject::Distance(  playerTank->getWorldPosition(),s->getWorldPosition())<5){
+		if(SWObject::Distance(  playerTank->getWorldPosition(),s->getWorldPosition())<15){
 			playerTank->buffed(s->getType());
 			delete (*buffList)[i];
 			buffList->erase(buffList->begin()+i);

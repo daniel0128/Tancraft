@@ -14,5 +14,5 @@ StaticObject::~StaticObject(void)
 }
 
 void StaticObject::Think(float time){
-	mObjectSceneNode->yaw(Ogre::Radian(time));
+	mObjectSceneNode->yaw(Ogre::Radian(4*time));
 }

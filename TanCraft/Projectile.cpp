@@ -7,7 +7,7 @@
 Projectile::Projectile(Ogre::SceneManager *sceneManager,ProjectileManager* pManager, Tank* fromTank)
 	:MovingObject(sceneManager,"Cannon.mesh",NULL),mProjectileManager(pManager),mfromTank(fromTank),bulletRange(1000)
 {
-
+	setScale(Ogre::Vector3(1.5,1.5,1.5));
 	velocity=fromTank->getBarrel()->SceneNodeManager()->_getDerivedOrientation() * Ogre::Vector3(1,0,0);
 	Ogre::Vector3 pos = fromTank->getBarrel()->getWorldPosition();
 	this->setPosition(pos);
