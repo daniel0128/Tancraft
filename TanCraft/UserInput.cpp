@@ -30,7 +30,8 @@ UserInput::Think(float time){
 			playerTank->tankMove(Tank::BACK,time);
 			if(mTankManager->checkCollision())
 			{playerTank->tankMove(Tank::BACK,-time);}
-		}else if(mInputHandler->IsKeyDown(OIS::KC_A)){//left
+		}
+		if(mInputHandler->IsKeyDown(OIS::KC_A)){//left
 			playerTank->tankMove(Tank::LEFT,time);
 			if(mTankManager->checkCollision())
 			{playerTank->tankMove(Tank::LEFT,-time);}
@@ -38,14 +39,18 @@ UserInput::Think(float time){
 			playerTank->tankMove(Tank::RIGHT,time);
 			if(mTankManager->checkCollision())
 			{playerTank->tankMove(Tank::RIGHT,-time);}
-		}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_A)){
-		}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_D)){
-		}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_A)){
-		}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_D)){
-		}else{
-			//PlayerTank->getRigidBody()->setLinearVelocity(btVector3(0,0,0));
-			playerTank->tankMove(Tank::STOP, time);
 		}
+		//}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_A)){
+		//	playerTank->tankMove(Tank::FOR_LEFT,time);
+		//	if(mTankManager->checkCollision())
+		//	{playerTank->tankMove(Tank::FOR_LEFT,-time);}
+		//}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_D)){
+		//}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_A)){
+		//}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_D)){
+		//}else{
+		//	//PlayerTank->getRigidBody()->setLinearVelocity(btVector3(0,0,0));
+		//	playerTank->tankMove(Tank::STOP, time);
+		//}
 
 		 //Although mouse control is implemented, I still want to keep this (D Z)
 		 if (mInputHandler->IsKeyDown(OIS::KC_LEFT))
@@ -90,7 +95,7 @@ void UserInput::hitBuff(){
 	std::vector<StaticObject*> * buffList = mGeometry->getBuffList();
 	for(size_t i=0; i<buffList->size();i++){
 		s = (StaticObject* )(*buffList)[i];
-		if(SWObject::Distance(  playerTank->getWorldPosition(),s->getWorldPosition())<5){
+		if(SWObject::Distance(  playerTank->getWorldPosition(),s->getWorldPosition())<15){
 			playerTank->buffed(s->getType());
 			delete (*buffList)[i];
 			buffList->erase(buffList->begin()+i);

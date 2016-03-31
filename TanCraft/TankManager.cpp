@@ -121,15 +121,15 @@ bool TankManager::overlap(Ogre::Vector3 pos){
 	StaticObject* s;
 	std::vector<StaticObject*> *sl = mGeometry->getStaticObjects();
 
-	if(SWObject::Distance(pos,playerTank->getWorldPosition())<30)
+	if(SWObject::Distance(pos,playerTank->getWorldPosition())<40)
 		return true;
 	for(size_t i=0;i<sl->size();i++){
 		s = (StaticObject*)(*sl)[i];
-		if(SWObject::Distance( pos,s->getWorldPosition())<30)
+		if(SWObject::Distance( pos,s->getWorldPosition())<40)
 			return true;
 	}
 	for(size_t i=0;i<tankList.size();i++){
-		if(SWObject::Distance(pos,tankList[i]->getWorldPosition())<30)
+		if(SWObject::Distance(pos,tankList[i]->getWorldPosition())<40)
 			return true;
 	}
 	return false;
