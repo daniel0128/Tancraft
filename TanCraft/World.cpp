@@ -23,6 +23,8 @@
 #include "InputHandler.h"
 #include "ProjectileManager.h"
 #include "TankManager.h"
+#include "Geometry.h"
+#include "StaticObject.h"
 
 
 World::World(Ogre::SceneManager *sceneManager, InputHandler *input, ProjectileManager *projectileManager,TankManager *tManager,Geometry* geometry) 
@@ -96,6 +98,12 @@ World::Think(float time)
 		Display();
 		mProjectileManager ->Think(time);
 		mTankManager->Think(time);
+		StaticObject *s;
+		std::vector<StaticObject* > *list = mGeometry->getBuffList();
+		for(size_t i=0;i<list->size();i++){
+			s = (StaticObject*)(*list)[i];
+			s->Think(time);
+		}
 	}
 	else{
 		Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();

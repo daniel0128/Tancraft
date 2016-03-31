@@ -5,6 +5,7 @@
 
 Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 {
+	srand ( (unsigned int)time(NULL) );
 	mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE);
 	//sky
 	mSceneManager->setSkyDome(true, "Examples/CloudySky", 5, 8);  
@@ -68,7 +69,7 @@ Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 	wWallEnt->setCastShadows(false);  
 	mSceneManager->getRootSceneNode()->createChildSceneNode("WWALL",Ogre::Vector3(-500,-100,0))->attachObject(wWallEnt); 
 	
-	StaticObject* box = new StaticObject(mSceneManager,"wood_box.mesh");
+	StaticObject* box = new StaticObject(mSceneManager,"WoodBox.mesh");
 	box->setPosition(Ogre::Vector3(350,20,100));
 	box->setScale(Ogre::Vector3(20,20,20));
 	mStaticObjects.push_back(box);
@@ -96,13 +97,13 @@ void Geometry::creatBuff(){
 	switch (type)
 	{
 	case 1:
-		meshName = "hp_box.mesh";
+		meshName = "HealCoin.mesh";
 		break;
 	case 2:
-		meshName = "bp_box.mesh";
+		meshName = "PowerCoin.mesh";
 		break;
 	case 3:
-		meshName = "shield_box.mesh";
+		meshName = "ShieldCoin.mesh";
 		break;
 	default:
 		break;
@@ -117,7 +118,7 @@ void Geometry::creatBuff(){
 	StaticObject* buff = new StaticObject(mSceneManager, meshName);
 	buff->setType(type);
 	buff->setPosition(pos);
-	buff->setScale(Ogre::Vector3(5,5,5));
+	buff->setScale(Ogre::Vector3(.2,7,7));
 	mBuffs.push_back(buff);
 }
 

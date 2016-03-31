@@ -59,6 +59,7 @@ void PlayerTank::shake(){
 void PlayerTank::reset(){
 	setPosition(Ogre::Vector3(-40,7,0));
 	HP= fullHP = 100;
+	bulletPower = 10;
 	shakeTime = 0.;
 }
 

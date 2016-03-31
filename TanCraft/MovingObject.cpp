@@ -5,7 +5,7 @@
 
 MovingObject::
 	MovingObject(Ogre::SceneManager *sceneManager, const char *meshName, MovingObject *parent) 
-	:SWObject(sceneManager,meshName,parent), movingSpeed(50),palstance(0.5)
+	:SWObject(sceneManager,meshName,parent), movingSpeed(60),palstance(0.5)
 {
 }
 

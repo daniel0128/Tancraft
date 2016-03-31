@@ -51,6 +51,7 @@ protected:
 	int playerBP;
 	int AIHP;
 	int AIBP;
+	bool overlap(Ogre::Vector3);
 
 };
 #endif

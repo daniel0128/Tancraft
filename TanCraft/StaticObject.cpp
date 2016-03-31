@@ -12,3 +12,7 @@ StaticObject::StaticObject(Ogre::SceneManager *sceneManager, const char *meshNam
 StaticObject::~StaticObject(void)
 {
 }
+
+void StaticObject::Think(float time){
+	mObjectSceneNode->yaw(Ogre::Radian(time));
+}
