@@ -13,7 +13,7 @@ Projectile::Projectile(Ogre::SceneManager *sceneManager,ProjectileManager* pMana
 	this->setPosition(pos);
 
 	//bulletVelocity=velocity;
-	movingSpeed=700;
+	movingSpeed=1000;
 	palstance=10;//),movingSpeed(20)
 	bulletVelocity = movingSpeed*velocity;
 }

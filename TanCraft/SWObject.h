@@ -6,6 +6,7 @@ public:
 	SWObject(Ogre::SceneManager *sceneManager, const char *meshName, SWObject* mParent);
 	~SWObject(void);
 	static float Distance(SWObject* object1, SWObject* object2);
+	static float Distance(Ogre::Vector3, Ogre::Vector3);
 
 	//getter
 	Ogre::Vector3 getWorldPosition();

@@ -21,8 +21,11 @@ public:
 	bool checkCollision();
 	void addGeometry(Geometry* geo);
 
+	int getRemaining() {return tankList.size()+enemyNum;}
+	int getAIHP() {return AIHP;}
+	int getAIBP() {return AIBP;}
 
-	
+
 	static int level;
 	static bool gameRunning;
 
@@ -48,6 +51,7 @@ protected:
 	int playerBP;
 	int AIHP;
 	int AIBP;
+	bool overlap(Ogre::Vector3);
 
 };
 #endif

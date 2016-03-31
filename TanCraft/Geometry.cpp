@@ -5,6 +5,7 @@
 
 Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 {
+	srand ( (unsigned int)time(NULL) );
 	mSceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE);
 	//sky
 	mSceneManager->setSkyDome(true, "Examples/CloudySky", 5, 8);  
@@ -68,11 +69,10 @@ Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 	wWallEnt->setCastShadows(false);  
 	mSceneManager->getRootSceneNode()->createChildSceneNode("WWALL",Ogre::Vector3(-500,-100,0))->attachObject(wWallEnt); 
 	
-	StaticObject* box = new StaticObject(mSceneManager,"Box.mesh");
+	StaticObject* box = new StaticObject(mSceneManager,"WoodBox.mesh");
 	box->setPosition(Ogre::Vector3(350,20,100));
 	box->setScale(Ogre::Vector3(20,20,20));
 	mStaticObjects.push_back(box);
-
 }
 
 
@@ -83,4 +83,53 @@ Geometry::~Geometry(void)
 std::vector<StaticObject*>*
 Geometry::getStaticObjects(){
 	return &mStaticObjects;
+}
+
+std::vector<StaticObject*>*
+Geometry::getBuffList(){
+	return &mBuffs;
+}
+
+void Geometry::creatBuff(){
+	int type = rand()%3+1;
+	int x, z;
+	char* meshName;
+	switch (type)
+	{
+	case 1:
+		meshName = "HealCoin.mesh";
+		break;
+	case 2:
+		meshName = "PowerCoin.mesh";
+		break;
+	case 3:
+		meshName = "ShieldCoin.mesh";
+		break;
+	default:
+		break;
+	}
+	Ogre::Vector3 pos;
+	do{
+		x=Ogre::Math::RangeRandom(-400,400);
+		z=Ogre::Math::RangeRandom(-400,400);
+		pos = Ogre::Vector3(x,10,z);
+	}while(overlap(pos));
+
+	StaticObject* buff = new StaticObject(mSceneManager, meshName);
+	buff->setType(type);
+	buff->setPosition(pos);
+	buff->setScale(Ogre::Vector3(.2,7,7));
+	mBuffs.push_back(buff);
+}
+
+bool Geometry::overlap(Ogre::Vector3 pos){
+	for(size_t i=0; i<mStaticObjects.size();i++){
+		if(SWObject::Distance(mStaticObjects[i]->getWorldPosition(),pos)<30)
+			return true;
+	}
+	for(size_t i=0; i<mBuffs.size();i++){
+		if(SWObject::Distance(mBuffs[i]->getWorldPosition(),pos)<30)
+			return true;
+	}
+	return false;
 }

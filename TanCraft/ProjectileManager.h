@@ -12,6 +12,7 @@ class TankManager;
 class Tank;
 class Explosion;
 class Geometry;
+class StaticObject;
 
 class ProjectileManager
 {
@@ -24,6 +25,8 @@ public:
 	std::vector<Projectile*> *getBulletList(){return &mProjectileList;}
 	void addTankManager(TankManager* tManager){mTankManager=tManager;}
 	Tank* checkCollision(Projectile* pro);
+	StaticObject* hitGeo(Projectile* pro);
+
 	void addGeometry(Geometry* geo);
 
 protected:

@@ -19,7 +19,6 @@ ProjectileManager::~ProjectileManager(void)
 void
 ProjectileManager::Think(float time){
 
-	//bool collision = false;
 	Projectile* p;
 	for(std::size_t i=0;i<mProjectileList.size();i++){
 		//collision = mProjectileList[i]->fly(time);
@@ -35,7 +34,8 @@ ProjectileManager::Think(float time){
 			}else
 				t->beHit(mTankManager->getPlayerTank()->getPower());
 		}
-		if(p->getRange()<0||t||
+		StaticObject* s = hitGeo(mProjectileList[i]);
+		if(p->getRange()<0||t||s||
 			proPosition.y<0||proPosition.x>500||proPosition.x<-500||proPosition.z>500||proPosition.z<-500){
 			explosion++;
 			mExplosionList.push_back(new Explosion(mSceneManager, explosion, mProjectileList[i]->getWorldPosition()));
@@ -81,6 +81,22 @@ ProjectileManager::checkCollision(Projectile* p){
 
 	if(MovingObject::Distance( mTankManager->getPlayerTank(),p)<10 && pT != pF)
 		return mTankManager->getPlayerTank();
+	return NULL;
+}
+
+StaticObject* 
+ProjectileManager::hitGeo(Projectile *p){
+	if(!mGeometry||mGeometry->getStaticObjects()->size()==0)
+		return NULL;
+
+	StaticObject *s;
+	std::vector<StaticObject*> *objects = mGeometry->getStaticObjects();
+	for(size_t i = 0; i<objects->size(); i++){
+		s= (StaticObject*)(*objects)[i];
+		if(SWObject::Distance((SWObject*)p,(SWObject*)s)<15){
+			return s;
+		}
+	}
 	return NULL;
 }
 
