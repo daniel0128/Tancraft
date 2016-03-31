@@ -5,6 +5,7 @@
 StaticObject::StaticObject(Ogre::SceneManager *sceneManager, const char *meshName)
 	:SWObject(sceneManager,meshName,NULL)
 {
+	type=0;
 }
 
 

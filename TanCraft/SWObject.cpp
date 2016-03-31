@@ -41,3 +41,7 @@ SWObject::Distance(SWObject* o1,SWObject* o2){
 	Ogre::Vector3 p2=o2->getWorldPosition();
 	return sqrt((p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y)+(p1.z-p2.z)*(p1.z-p2.z));
 }
+
+float SWObject::Distance(Ogre::Vector3 v1, Ogre::Vector3 v2){
+	return sqrt( (v1.x-v2.x)*(v1.x-v2.x)+(v1.y-v2.y)*(v1.y-v2.y)+(v1.z-v2.z)*(v1.z-v2.z));
+}

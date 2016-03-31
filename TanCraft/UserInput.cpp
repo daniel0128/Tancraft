@@ -4,6 +4,7 @@
 #include "PlayerTank.h"
 #include "InputHandler.h"
 #include "Geometry.h"
+#include "StaticObject.h"
 
 UserInput::UserInput(InputHandler* input, TankManager* tManager, ProjectileManager* pManager)
 	:mInputHandler(input),mTankManager(tManager),mProjectileManager(pManager)
@@ -19,10 +20,9 @@ UserInput::~UserInput(void)
 void
 UserInput::Think(float time){
 	if(TankManager::gameRunning){
+		hitBuff();
 		playerTank->shaking(time);
-
-		if (mInputHandler->WasKeyDown(OIS::KC_W)){//foward
-			//PlayerTank->getRigidBody()->setLinearVelocity(btVector3(30,0,0));
+		if (mInputHandler->WasKeyDown(OIS::KC_W)){
 			playerTank->tankMove(Tank::FOWARD,time);
 			if(mTankManager->checkCollision())
 			{playerTank->tankMove(Tank::FOWARD,-time);}
@@ -83,4 +83,17 @@ UserInput::Think(float time){
 
 void UserInput::addGeometry(Geometry* geo){
 	mGeometry=geo;
+}
+
+void UserInput::hitBuff(){
+	StaticObject* s;
+	std::vector<StaticObject*> * buffList = mGeometry->getBuffList();
+	for(size_t i=0; i<buffList->size();i++){
+		s = (StaticObject* )(*buffList)[i];
+		if(SWObject::Distance(  playerTank->getWorldPosition(),s->getWorldPosition())<5){
+			playerTank->buffed(s->getType());
+			delete (*buffList)[i];
+			buffList->erase(buffList->begin()+i);
+		}
+	}
 }

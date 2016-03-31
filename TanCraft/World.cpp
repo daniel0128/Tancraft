@@ -52,39 +52,42 @@ World::Display()
 
 	Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
 
+	//player hp
 	Ogre::Overlay *HP = om.getByName("Hp");
-	hp = Ogre::StringConverter::toString("100");
+	hp = Ogre::StringConverter::toString(mTankManager->getPlayerTank()->getHP());
 	Ogre::TextAreaOverlayElement *hpp = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Hp/Panel/HPtext");
 	hpp->setCaption("HP:  "+hp);
 	
+	//player bp
 	Ogre::Overlay *BulletPower = om.getByName("BulletPower");
-	bulletPower = Ogre::StringConverter::toString("10");
+	bulletPower = Ogre::StringConverter::toString(mTankManager->getPlayerTank()->getPower());
 	Ogre::TextAreaOverlayElement *bp = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("BulletPower/Panel/BulletPowertext");
 	bp->setCaption("BulletPower:   "+ bulletPower);
 
+	//enemy 
 	Ogre::Overlay *Enemy = om.getByName("Enemy");
-	level = Ogre::StringConverter::toString("1");
+	level = Ogre::StringConverter::toString(TankManager::level);
 	Ogre::TextAreaOverlayElement *lv = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Enemy/Panel/level");
 	lv->setCaption("Level: "+level);
 
-	enemies = Ogre::StringConverter::toString("3");
+	enemies = Ogre::StringConverter::toString(mTankManager->getRemaining());
 	Ogre::TextAreaOverlayElement *es = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Enemy/Panel/enemies");
 	es->setCaption("Enemies: "+enemies);
 
-	enemyHP = Ogre::StringConverter::toString("20");
+	enemyHP = Ogre::StringConverter::toString(mTankManager->getAIHP());
 	Ogre::TextAreaOverlayElement *ehp = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Enemy/Panel/eHP");
 	ehp->setCaption("EnemyHP: "+enemyHP);
 
-	enemyBulletPower = Ogre::StringConverter::toString("50");
+	enemyBulletPower = Ogre::StringConverter::toString(mTankManager->getAIBP());
 	Ogre::TextAreaOverlayElement *ebp = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Enemy/Panel/eBP");
 	ebp->setCaption("EnemyBulletPower: "+enemyBulletPower);
-
 
 	HP->show();
 	BulletPower->show();
 	Enemy->show();
 
 }
+
 
 void 
 World::Think(float time)
@@ -93,20 +96,6 @@ World::Think(float time)
 		Display();
 		mProjectileManager ->Think(time);
 		mTankManager->Think(time);
-
-	//std::string hudText6;
-	//hudText6 = Ogre::StringConverter::toString(mTankManager->enemyNum);
-	//Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
-	//Ogre::Overlay *overlay = om.getByName("Sample");
-	//Ogre::TextAreaOverlayElement *hud6 = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Hud2/Panel/Text6");
-	//overlay->setCaption("Enemy HP:  "+hudText6);
-	//Ogre::TextAreaOverlayElement *te = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Sample/Panel/Text1");
-	//te->setCaption(" level: "+Ogre::StringConverter::toString(TankManager::level)+
-	//	"\n enemy: "+Ogre::StringConverter::toString(mTankManager->enemyNum)+
-	//	"\n list: "+Ogre::StringConverter::toString(mTankManager->getTankList()->size())+
-	//	"\n remain: "+Ogre::StringConverter::toString(mTankManager->getTankList()->size()+mTankManager->enemyNum)+
-	//	"\n player HP: "+ Ogre::StringConverter::toString(mTankManager->getPlayerTank()->getHP())
-	//	);
 	}
 	else{
 		Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();

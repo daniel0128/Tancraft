@@ -15,14 +15,14 @@ public:
 	~UserInput(void);
 	void Think(float time);
 	void addGeometry(Geometry* geo);
-	//void setCameraToTank();
+
 protected:
+	void hitBuff();
 	TankManager* mTankManager;
 	PlayerTank* playerTank;
 	InputHandler* mInputHandler;
 	ProjectileManager* mProjectileManager;
 	Geometry* mGeometry;
-
 };
 #endif
 
