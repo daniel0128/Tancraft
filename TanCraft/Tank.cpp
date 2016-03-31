@@ -8,7 +8,7 @@ Tank::Tank(Ogre::SceneManager *sceneManager, ProjectileManager* pManager, const 
 	:MovingObject(sceneManager,NULL,NULL),mProjectileManager(pManager),alive(true)
 {
 	fireCD=float(rand()%20+1)/20;
-	setScale(Ogre::Vector3(3,3,3));
+	setScale(Ogre::Vector3(4,4,4));
 	mCar = new MovingObject(sceneManager, carMesh, this);
 	mBarrel = new MovingObject(sceneManager,barrelMesh,this);
 	mBarrel ->SceneNodeManager()-> setPosition(Ogre::Vector3(0,1.5,0));

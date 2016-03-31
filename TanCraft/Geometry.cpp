@@ -70,9 +70,24 @@ Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 	mSceneManager->getRootSceneNode()->createChildSceneNode("WWALL",Ogre::Vector3(-500,-100,0))->attachObject(wWallEnt); 
 	
 	StaticObject* box = new StaticObject(mSceneManager,"WoodBox.mesh");
-	box->setPosition(Ogre::Vector3(350,20,100));
+	box->setPosition(Ogre::Vector3(200,20,200));
 	box->setScale(Ogre::Vector3(20,20,20));
 	mStaticObjects.push_back(box);
+
+	StaticObject* box_1 = new StaticObject(mSceneManager,"WoodBox.mesh");
+	box_1->setPosition(Ogre::Vector3(-200,20,200));
+	box_1->setScale(Ogre::Vector3(20,20,20));
+	mStaticObjects.push_back(box_1);
+
+	StaticObject* box_2 = new StaticObject(mSceneManager,"WoodBox.mesh");
+	box_2->setPosition(Ogre::Vector3(200,20,-200));
+	box_2->setScale(Ogre::Vector3(20,20,20));
+	mStaticObjects.push_back(box_2);
+
+	StaticObject* box_3 = new StaticObject(mSceneManager,"WoodBox.mesh");
+	box_3->setPosition(Ogre::Vector3(-200,20,-200));
+	box_3->setScale(Ogre::Vector3(20,20,20));
+	mStaticObjects.push_back(box_3);
 }
 
 
@@ -112,13 +127,13 @@ void Geometry::creatBuff(){
 	do{
 		x=Ogre::Math::RangeRandom(-400,400);
 		z=Ogre::Math::RangeRandom(-400,400);
-		pos = Ogre::Vector3(x,10,z);
+		pos = Ogre::Vector3(x,15,z);
 	}while(overlap(pos));
 
 	StaticObject* buff = new StaticObject(mSceneManager, meshName);
 	buff->setType(type);
 	buff->setPosition(pos);
-	buff->setScale(Ogre::Vector3(.2,7,7));
+	buff->setScale(Ogre::Vector3(2,7,7));
 	mBuffs.push_back(buff);
 }
 
