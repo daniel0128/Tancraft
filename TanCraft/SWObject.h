@@ -1,5 +1,4 @@
 #pragma once
-class OBB;
 class SWObject
 {
 public:
@@ -16,9 +15,6 @@ public:
 	void setScale(Ogre::Vector3);
 	
 protected:
-	//for obb type collision checking
-	OBB* obb;
-	
 	//necessary
 	SWObject *mParent;
 	Ogre::Entity* ent;

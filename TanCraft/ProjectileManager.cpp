@@ -21,7 +21,6 @@ ProjectileManager::Think(float time){
 
 	Projectile* p;
 	for(std::size_t i=0;i<mProjectileList.size();i++){
-		//collision = mProjectileList[i]->fly(time);
 		p=mProjectileList[i];
 		p->Think(time);
 		Ogre::Vector3 proPosition=p->getWorldPosition();

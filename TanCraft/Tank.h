@@ -24,9 +24,6 @@ public:
 	Tank(Ogre::SceneManager *sceneManager, ProjectileManager *pManager, const char *carMesh, const char *barrelMesh);
 	~Tank(void);
 	MovingObject *getBarrel(){return mBarrel;}
-	//void setPlayerCamera(Ogre::Camera* cam);
-	//void setRadarCamera(Ogre::Camera* cam);
-
 
 	void barrelRotate(Rotate way, float time);
 	void tankMove(TankDirection way, float time);
@@ -45,14 +42,12 @@ public:
 
 	void setBulletPower(int bp){bulletPower = bp;}
 	int getPower(){return bulletPower;}
-	//virtual void Think(float time);
 	virtual void beHit(int){}
 	virtual bool isPlayer(){return false;}
 
 protected:
 	MovingObject *mBarrel;
 	MovingObject *mCar;
-	//MovingObject *mTank;
 
 	ProjectileManager *mProjectileManager;
 	float fireCD;

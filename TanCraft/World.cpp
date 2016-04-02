@@ -88,6 +88,12 @@ World::Display()
 	BulletPower->show();
 	Enemy->show();
 
+	Ogre::Overlay *gameover = om.getByName("GameOver");
+
+	if(!TankManager::gameRunning)
+		gameover->show();
+	else
+		gameover->hide();
 }
 
 
@@ -95,7 +101,7 @@ void
 World::Think(float time)
 {
 	if(TankManager::gameRunning){
-		Display();
+	
 		mProjectileManager ->Think(time);
 		mTankManager->Think(time);
 		StaticObject *s;
@@ -105,10 +111,12 @@ World::Think(float time)
 			s->Think(time);
 		}
 	}
-	else{
-		Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
-		Ogre::TextAreaOverlayElement *te = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Sample/Panel/Text1");
-		te->setCaption("Press ENTER to restart game");
-	}
+	Display();
+	//else{
+	//	Ogre::OverlayManager& om = Ogre::OverlayManager::getSingleton();
+	//	Ogre::TextAreaOverlayElement *te = (Ogre::TextAreaOverlayElement *) om.getOverlayElement("Sample/Panel/Text1");
+	//	te->setCaption("Press ENTER to restart game");
+	//	te->show();
+	//}
 }
 

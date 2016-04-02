@@ -2,9 +2,10 @@
 #include "PlayerTank.h"
 #include "TankManager.h"
 #include "StaticObject.h"
+#include "Camera.h"
 
 PlayerTank::PlayerTank(Ogre::SceneManager* sceneManager, ProjectileManager* pManager)
-	:Tank(sceneManager, pManager, "Car.mesh", "Battery.mesh"),shakeAmplitude(Ogre::Math::PI/180),shakeTime(0)
+	:Tank(sceneManager, pManager, "Car.mesh", "Battery.mesh")//,shakeAmplitude(Ogre::Math::PI/45),shakeTime(0)
 {
 	HP=100;
 	bulletPower=10;
@@ -41,29 +42,16 @@ void PlayerTank::beHit(int power){
 	}
 }
 
-void PlayerTank::shaking(float time){
-	if(shakeTime>0){
-		shakeAmplitude*=-1;
-		SceneNodeManager()->pitch(Ogre::Radian(shakeAmplitude));
-		shakeTime-=time;
-	}else{
-		SceneNodeManager()->setDirection(Ogre::Vector3(0,1,0),Ogre::Node::TS_LOCAL,Ogre::Vector3::UNIT_Y);
-		SceneNodeManager()->setPosition(getWorldPosition().x,7,getWorldPosition().z);
-	}
-}
-
 void PlayerTank::shake(){
-	shakeTime=0.5;
+	playerCamera->shake();
 }
 
 void PlayerTank::reset(){
 	setPosition(Ogre::Vector3(-40,7,0));
 	HP= fullHP = 100;
 	bulletPower = 10;
-	shakeTime = 0.;
 }
 
-//TODO:
 void PlayerTank::buffed(int type){
 	switch (type)
 	{
@@ -78,8 +66,8 @@ void PlayerTank::buffed(int type){
 		bulletPower+=10;
 		break;
 	case 3:
-		shielded = true;
 		//shielded
+		shielded = true;
 		break;
 	default:
 		break;

@@ -28,16 +28,6 @@ public:
 	bool IsMouseBtnDown(OIS::MouseButtonID button);
 	//I am not sure why here Captain Letter is used, but I decided to follow. (D Z)
 	OIS::MouseState GetMouseState();
-	
-	//bool mouseMoved(const OIS::MouseEvent &) override;      
-
-	//bool mousePressed(const OIS::MouseEvent &,OIS::MouseButtonID) override;
-
-	//bool mouseReleased(const OIS::MouseEvent &,OIS::MouseButtonID)override;
-
-	//bool keyPressed(const OIS::KeyEvent &) override;
-
-	//bool keyReleased(const OIS::KeyEvent &) override;
 
 protected:
 	OIS::InputManager* mInputManager;
@@ -51,8 +41,6 @@ protected:
 	OIS::Keyboard *mKeyboard;
 
 	char mOldKeys[256];
-	std::vector<OIS::KeyListener*> keyListeners;
-	std::vector<OIS::MouseListener*> mouseListeners;
 
 };
 

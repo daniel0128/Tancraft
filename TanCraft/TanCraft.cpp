@@ -7,6 +7,7 @@
 #include "ProjectileManager.h"
 #include "UserInput.h"
 #include "Geometry.h"
+#include "PlayerTank.h"
 
 #include "Ogre.h"
 #include "OgreConfigFile.h"
@@ -105,6 +106,7 @@ TanCraft::createScene()
 
 	mWorld = new World(mSceneMgr, mInputHandler, mProjectileManager,mTankManager,mGeometry);
     mTankCamera = new TankCamera(mCamera, mapCamera, mTankManager);
+	mTankManager->getPlayerTank()->addCamera(mTankCamera);
 }
 
 bool 
