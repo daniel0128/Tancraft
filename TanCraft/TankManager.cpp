@@ -24,8 +24,10 @@ void
 TankManager::Think(float time){
 	if(tankList.size()==0 && enemyNum==0){
 		level++;
-		if(level>10)
-			level=1;
+		if(level>10){
+			reset();
+		}
+			
 		mGeometry->creatBuff();
 		enemyNum=level+4;
 	}
@@ -116,6 +118,7 @@ void TankManager::reset(){
 	tankList.clear();
 	playerTank->reset();
 	level = 0;
+	enemyNum=0;
 }
 
 bool TankManager::overlap(Ogre::Vector3 pos){
