@@ -7,10 +7,9 @@
 #include "InputHandler.h"
 
 TankCamera::TankCamera(Ogre::Camera *renderCamera,Ogre::Camera *mapCamera, TankManager *tManager) :
-mRenderCamera(renderCamera), mTankManager(tManager)
+	mRenderCamera(renderCamera), mTankManager(tManager),shakeTime(.0),shakeAmplitude(Ogre::Math::PI/180)
 {
 	mRenderCamera->setNearClipDistance(2);
-	//mTankManager->getPlayerTank()->getBarrel()->setCameraToLocal(mRenderCamera);
 	mTankManager->getPlayerTank()->setPlayerCamera(mRenderCamera);
 
 
@@ -21,6 +20,13 @@ mRenderCamera(renderCamera), mTankManager(tManager)
 void
 TankCamera::Think(float time)
 {
-	// Any code needed here to move the camera about per frame
-	//  (use mRenderCamera to get the actual render camera, of course!)
+	if(shakeTime>0){
+		shakeAmplitude*=-1;
+		mRenderCamera->roll(Ogre::Radian(shakeAmplitude));
+		shakeTime-=time;
+	}
+}
+
+void TankCamera::shake(){
+	shakeTime=.5;
 }

@@ -21,7 +21,6 @@ Geometry::Geometry(Ogre::SceneManager* sceneManager):mSceneManager(sceneManager)
 	Ogre::Entity* gPlaneEnt = mSceneManager->createEntity( "GroundPlane", "Gplane" );
 	mSceneManager->getRootSceneNode()->createChildSceneNode("GROUND",Ogre::Vector3(0,0,0))->attachObject(gPlaneEnt); 
 	gPlaneEnt->setMaterialName("Examples/Floor");  
-	//gPlaneEnt->setVisible(0);
 	gPlaneEnt->setCastShadows(true);
 
 	//walls

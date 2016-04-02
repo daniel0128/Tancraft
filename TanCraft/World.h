@@ -36,8 +36,6 @@ public:
 
 	Ogre::SceneManager *SceneManager() { return mSceneManager; }
 
-	//void setCameraToTank();
-
 	//This is not neccesary if we do not allow user to control camera respectively (D Z)
 	InputHandler *getHandler(){return mInputHandler;}
 	void setInfoStr(std::string info){infoStr = info;}

@@ -16,14 +16,14 @@ Tank::Tank(Ogre::SceneManager *sceneManager, ProjectileManager* pManager, const 
 
 Tank::~Tank(void)
 {
-	//need destructor, but very wierd to code after such long experience of Java
+	//long time to code destructors
 	delete mCar;
 	delete mBarrel;
 }
 void
 Tank::tankMove(TankDirection way, float time){
 	switch (way){
-		//TODO: turn smoothly
+		//turn not smoothly
 		case FOWARD:
 			mCar->SceneNodeManager()->setDirection(Ogre::Vector3(-1,0,0),
 				Ogre::Node::TS_PARENT,
@@ -49,30 +49,6 @@ Tank::tankMove(TankDirection way, float time){
 			translate( Ogre::Vector3(0,0,-time * movingSpeed),MovingObject::TS_LOCAL);
 			break;
 
-		//case FOR_LEFT:
-		//	mCar->SceneNodeManager()->setDirection(Ogre::Vector3(-1,0,1),
-		//		Ogre::Node::TS_PARENT,
-		//		Ogre::Vector3::NEGATIVE_UNIT_X);
-		//	this->translate(Ogre::Math::Sin(45) *Ogre::Vector3(time*movingSpeed,0,-time * movingSpeed), MovingObject::TS_LOCAL);
-		//	break;
-		//case FOR_RIGHT:
-		//	mCar->SceneNodeManager()->setDirection(Ogre::Vector3(-1,0,-1),
-		//		Ogre::Node::TS_PARENT,
-		//		Ogre::Vector3::NEGATIVE_UNIT_X);
-		//	this->translate(Ogre::Math::Sin(45) *Ogre::Vector3(time*movingSpeed,0,time * movingSpeed), MovingObject::TS_LOCAL);
-		//	break;
-		//case BACK_LEFT:
-		//	mCar->SceneNodeManager()->setDirection(Ogre::Vector3(1,0,1),
-		//		Ogre::Node::TS_PARENT,
-		//		Ogre::Vector3::NEGATIVE_UNIT_X);
-		//	this->translate(Ogre::Math::Sin(45) *Ogre::Vector3(-time*movingSpeed,0,-time * movingSpeed), MovingObject::TS_LOCAL);
-		//	break;
-		//case BACK_RIGHT:
-		//	mCar->SceneNodeManager()->setDirection(Ogre::Vector3(1,0,-1),
-		//		Ogre::Node::TS_PARENT,
-		//		Ogre::Vector3::NEGATIVE_UNIT_X);
-		//	this->translate(Ogre::Math::Sin(45) *Ogre::Vector3(-time*movingSpeed,0,time * movingSpeed), MovingObject::TS_LOCAL);
-		//	break;
 		default:
 			break;
 	}
@@ -81,10 +57,8 @@ void Tank::barrelRotate(Rotate way, float time){
 	switch (way)
 	{
 	case PITCH:
-		//this may not neccessary
 		break;
 	case YAW:
-		//mTank->
 		yaw(Ogre::Radian(time * palstance));
 		mCar->yaw(Ogre::Radian(-time * palstance));
 		break;
@@ -97,7 +71,7 @@ void Tank::barrelRotate(Rotate way, float time){
 }
 void
 Tank::fire(){
-	if(fireCD<0.000001){
+	if(fireCD<0){
 		Projectile* bullet = new Projectile(getSceneManager(),mProjectileManager,this);
 		mProjectileManager->getBulletList()->push_back(bullet);
 		fireCD=1.0;

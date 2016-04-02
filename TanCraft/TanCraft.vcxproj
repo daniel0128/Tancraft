@@ -115,11 +115,9 @@ copy resources.cfg "$(OutDir)"</Command>
   <ItemGroup>
     <ClInclude Include="AITank.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="InputHandler.h" />
-    <ClInclude Include="InputManager.h" />
     <ClInclude Include="MainListener.h" />
     <ClInclude Include="MovingObject.h" />
     <ClInclude Include="PlayerTank.h" />
@@ -137,12 +135,9 @@ copy resources.cfg "$(OutDir)"</Command>
   <ItemGroup>
     <ClCompile Include="AITank.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="InputHandler.cpp" />
-    <ClCompile Include="InputListener.cpp" />
-    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainListener.cpp" />
     <ClCompile Include="MovingObject.cpp" />
