@@ -1,7 +1,28 @@
-Content (models / etc) are stored in OgrePong/Content
+TanCraft
+This is a Tank game made with Ogre
+Control:
+Mouse rolling:
+	change direction of player camera and tank's barrel
+Mouse Left Button Down: 
+	fire
+Keyboard:
+	W, go foward
+	S, go back
+	A, go left
+	D, go right
 
-Configuration files are stored in OgrePong/Content, and are copied into the 
-ouput directory as a post-build step.
+Interesting features:
+ Level: There are 10 levels totally. The higher the level is, the harder the game.
+ Buff:
+	 Three kinds of buffs:
+	 power up (blue coin with orange flash)-- add bullet power by 10
+	heal (white coin with red cross) -- add HP by 10 to player's tank
+	shield (green coin) -- protect player tank from one shot
+ BGM
+ Mini Map
+ CameraShaking:
+	The camera will shake for 0.5 second after player tank is hit.	
 
-If you change directory structure, be sure to modify resources.cfg and resources_d.cfg
-to point at the correct places.
+
+
+Content (models / etc) are stored in TanCraft/Content

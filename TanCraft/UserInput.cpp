@@ -21,7 +21,7 @@ void
 UserInput::Think(float time){
 	if(TankManager::gameRunning){
 		hitBuff();
-		playerTank->shaking(time);
+	
 		if (mInputHandler->WasKeyDown(OIS::KC_W)){
 			playerTank->tankMove(Tank::FOWARD,time);
 			if(mTankManager->checkCollision())
@@ -40,37 +40,12 @@ UserInput::Think(float time){
 			if(mTankManager->checkCollision())
 			{playerTank->tankMove(Tank::RIGHT,-time);}
 		}
-		//}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_A)){
-		//	playerTank->tankMove(Tank::FOR_LEFT,time);
-		//	if(mTankManager->checkCollision())
-		//	{playerTank->tankMove(Tank::FOR_LEFT,-time);}
-		//}else if(mInputHandler->IsKeyDown(OIS::KC_W) && mInputHandler->IsKeyDown(OIS::KC_D)){
-		//}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_A)){
-		//}else if(mInputHandler->IsKeyDown(OIS::KC_S) && mInputHandler->IsKeyDown(OIS::KC_D)){
-		//}else{
-		//	//PlayerTank->getRigidBody()->setLinearVelocity(btVector3(0,0,0));
-		//	playerTank->tankMove(Tank::STOP, time);
-		//}
 
-		 //Although mouse control is implemented, I still want to keep this (D Z)
-		 if (mInputHandler->IsKeyDown(OIS::KC_LEFT))
-		 {
-			 playerTank->barrelRotate(Tank::YAW,time);
-		 }else if(mInputHandler->IsKeyDown(OIS::KC_RIGHT))
-		 {
-			 playerTank->barrelRotate(Tank::YAW,-time);
-		 }
-
-		 if (mInputHandler->IsKeyDown(OIS::KC_UP))
-		 {
-			 playerTank->barrelRotate(Tank::ROLL,time);
-		 }else if(mInputHandler->IsKeyDown(OIS::KC_DOWN))
-		 {
-			 playerTank->barrelRotate(Tank::ROLL,-time);
-		 }
+		if(mInputHandler->IsKeyDown(OIS::KC_SPACE)){
+			playerTank->shake();
+		}
 
 		 //mouse control of camera and barrel (D Z)
-	 
 		 playerTank->barrelRotate(Tank::ROLL, -time*mInputHandler->GetMouseState().Y.rel);
 		 playerTank->barrelRotate(Tank::YAW,  -time*mInputHandler->GetMouseState().X.rel);
 		 if(mInputHandler->IsMouseBtnDown(OIS::MB_Left)){

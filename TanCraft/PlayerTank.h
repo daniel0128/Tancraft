@@ -1,5 +1,6 @@
 #pragma once
 #include "tank.h"
+class TankCamera;
 class PlayerTank :
 	public Tank
 {
@@ -9,19 +10,17 @@ public:
 
 	bool isPlayer() {return true;}
 	bool isShielded() {return shielded;}
-	//bool hitBuff();
 
 	void beHit(int);
 	void setPlayerCamera(Ogre::Camera* cam);
 	void setRadarCamera(Ogre::Camera* cam);
-	void shaking(float time);
 	void shake();
 	void reset();
 	void buffed(int);
+	void addCamera(TankCamera * cam) {playerCamera = cam;}
 
 protected:
-	Ogre::Real shakeAmplitude;
-	float shakeTime;
+	TankCamera* playerCamera;
 	bool shielded;
 };
 

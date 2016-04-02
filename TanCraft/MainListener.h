@@ -15,7 +15,6 @@ class InputHandler;
 class UserInput;
 class World;
 class TankCamera;
-//class Physics;
 
 class MainListener : public Ogre::FrameListener
 {
@@ -29,11 +28,9 @@ public:
 protected:
 	InputHandler *mInputHandler;
 	UserInput *mUserInput;
-	//AIManager *mAIManager;
 	World *mWorld;
     TankCamera *mTankCamera;
 	Ogre::RenderWindow *mRenderWindow;
-//	Physics *mPhysicsEngine;
 
 	int x;
 };

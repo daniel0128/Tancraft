@@ -27,11 +27,10 @@ TankManager::Think(float time){
 		if(level>10)
 			level=1;
 		mGeometry->creatBuff();
-		enemyNum=level+3;
+		enemyNum=level+4;
 	}
 	AIHP = AIBP= level*5;
-	if(tankList.size()<5 && enemyNum>0){
-		//TODO: set ai attributes based on level
+	if(tankList.size()<7 && enemyNum>0){
 		spawnTank(AIHP,AIBP);
 		enemyNum--;
 	}
@@ -52,14 +51,14 @@ TankManager::checkCollision(){
 	for(size_t i=0;i<tankList.size();i++){
 		pos = tankList[i]->getWorldPosition();
 		//enemy and player
-		if(SWObject::Distance(tankList[i],playerTank)<15)
+		if(SWObject::Distance(tankList[i],playerTank)<20)
 			return true;
 		//enemy and enemy
-		if (tankList.size()>2)		//enemyTank and enemyTank
+		if (tankList.size()>2)	
 		{
 		   for(std::size_t j = i+1; j < tankList.size(); j++ )
 			{
-				if (SWObject::Distance( tankList[i] , tankList[j])<30)
+				if (SWObject::Distance( tankList[i] , tankList[j])<35)
 					return true;
 			}
 		}
@@ -67,7 +66,7 @@ TankManager::checkCollision(){
 		std::vector<StaticObject* > *sObjs = mGeometry->getStaticObjects();
 		for(size_t i =0;i<sObjs->size();i++){
 			so = (StaticObject*)(*sObjs)[i];
-			if(SWObject::Distance(pos,so->getWorldPosition())<30)
+			if(SWObject::Distance(pos,so->getWorldPosition())<35)
 				return true;
 		}
 
@@ -81,7 +80,7 @@ TankManager::checkCollision(){
 		//player and geometry
 			for(size_t i =0;i<sObjs->size();i++){
 			so = (StaticObject*)(*sObjs)[i];
-			if(SWObject::Distance(playerPos,so->getWorldPosition())<32){
+			if(SWObject::Distance(playerPos,so->getWorldPosition())<35){
 				return true;
 			}
 		}
@@ -100,9 +99,11 @@ void TankManager::spawnTank(int hp, int bulletPower){
 	aiTank->setFulHP(hp);
 	aiTank->setBulletPower(bulletPower);
 	int x, z;
-	//TODO: check the valid location
-	x=Ogre::Math::RangeRandom(-400,400);
-	z=Ogre::Math::RangeRandom(-400,400);
+	//check the valid location
+	do{
+		x=Ogre::Math::RangeRandom(-400,400);
+		z=Ogre::Math::RangeRandom(-400,400);
+	}while(overlap(Ogre::Vector3(x,7,z)));
 	aiTank->setPosition(Ogre::Vector3(x,7,z));
 
 	tankList.push_back(aiTank);

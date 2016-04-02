@@ -19,9 +19,12 @@ public:
     void Think(float time);
     // If you have a different cameras, you'll want some acessor methods here.
     //  If your camera always stays still, you could remove this class entirely
+	void shake();
 
 protected:
 
+	float shakeTime;
+	Ogre::Real shakeAmplitude;
     Ogre::Camera *mRenderCamera; 
     TankManager *mTankManager;
 
