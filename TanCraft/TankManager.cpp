@@ -26,6 +26,7 @@ TankManager::Think(float time){
 		level++;
 		if(level>10){
 			reset();
+			return;
 		}
 			
 		mGeometry->creatBuff();
